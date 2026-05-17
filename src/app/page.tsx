@@ -286,22 +286,22 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                 
                 {/*  Hero Content  */}
-                <div data-aos="fade-right" data-aos-duration="1000">
+                <div className="lg:col-span-7" data-aos="fade-right" data-aos-duration="1000">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-primary-100 mb-6">
                         <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
                         <span className="text-xs font-bold text-primary-700 tracking-wider uppercase">Senior Resident, MGM Belapur</span>
                     </div>
                     
-                    <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-gray-900 leading-[1.15] mb-6">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900 leading-[1.2] mb-6 tracking-normal">
                         Where Every Woman Feels <br />
-                        <span className="gradient-text italic">Safe, Heard & Cared For.</span>
+                        <span className="gradient-text">Safe, Heard & Cared For</span>
                     </h1>
                     
-                    <p className="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
-                        Warm, private, and judgment-free women's care — at every stage of life.
+                    <p className="text-base sm:text-lg text-gray-700 font-sans font-medium mb-8 max-w-xl leading-relaxed tracking-wide">
+                        Warm, private, and judgment-free women's care — at every stage of life
                     </p>
                     
                     <div className="flex flex-wrap gap-4 mt-8">
@@ -336,7 +336,7 @@ export default function Home() {
                 </div>
 
                 {/*  Hero Image  */}
-                <div className="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div className="lg:col-span-5 relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary-200 to-brand-peach blob-shape transform rotate-12 scale-105 opacity-50"></div>
                     <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-white">
                         <img src="images/doctor-hero.jpg" alt="Dr. Vaibhavi Dhenge" className="w-full h-[600px] object-cover object-top" />
