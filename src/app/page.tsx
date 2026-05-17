@@ -104,22 +104,22 @@ export default function Home() {
                         ABOUT <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
-                    <div className="absolute top-full -left-4 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:block transition-all duration-300 z-50 min-w-[500px] grid grid-cols-2 gap-6 animate-fade-in">
+                    <div className="absolute top-full -left-4 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[500px] grid-cols-2 gap-6 animate-fade-in">
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Doctor Profile</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-user-md text-primary-400 mr-2 w-4"></i> About Doctor</a></li>
                                 <li><a href="#experience" className="hover:text-primary-600 transition block"><i className="fa-solid fa-award text-primary-400 mr-2 w-4"></i> Awards & Experience</a></li>
                                 <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-certificate text-primary-400 mr-2 w-4"></i> Memberships</a></li>
                             </ul>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mt-6 mb-3 border-b pb-1">Philosophy</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#mission-vision" className="hover:text-primary-600 transition block"><i className="fa-solid fa-hand-holding-heart text-primary-400 mr-2 w-4"></i> Mission, Vision & Values</a></li>
                             </ul>
                         </div>
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Media & Recognition</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#community" className="hover:text-primary-600 transition block"><i className="fa-solid fa-newspaper text-primary-400 mr-2 w-4"></i> Community & Health Tips</a></li>
                             </ul>
                         </div>
@@ -132,12 +132,12 @@ export default function Home() {
                         SERVICES <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Mega Dropdown */}
-                    <div className="absolute top-full -left-32 bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl p-8 border border-gray-100 hidden group-hover:block transition-all duration-300 z-50 min-w-[750px] grid grid-cols-3 gap-8 animate-fade-in">
+                    <div className="absolute top-full -left-32 bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl p-8 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[750px] grid-cols-3 gap-8 animate-fade-in">
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1 flex items-center gap-2">
                                 <i className="fa-solid fa-person-pregnant text-sm"></i> Pregnancy Care
                             </h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600 mb-6">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600 mb-6">
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Normal Pregnancy Care</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">High-Risk Pregnancy</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">ANC Checkups</a></li>
@@ -147,7 +147,7 @@ export default function Home() {
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1 flex items-center gap-2">
                                 <i className="fa-solid fa-baby-carriage text-sm"></i> Fertility
                             </h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Infertility Consultation</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Ovulation Guidance</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">PCOS-related Fertility</a></li>
@@ -158,7 +158,7 @@ export default function Home() {
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1 flex items-center gap-2">
                                 <i className="fa-solid fa-dna text-sm"></i> Gynecology
                             </h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600 mb-6">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600 mb-6">
                                 <li><a href="#services" className="hover:text-primary-600 transition block">PCOS / PCOD Treatment</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Irregular Periods</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Fibroids & Ovarian Cysts</a></li>
@@ -171,7 +171,7 @@ export default function Home() {
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1 flex items-center gap-2">
                                 <i className="fa-solid fa-user-nurse text-sm"></i> Delivery & Surgery
                             </h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600 mb-6">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600 mb-6">
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Normal Delivery</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Painless Delivery</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">C-Section</a></li>
@@ -181,7 +181,7 @@ export default function Home() {
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1 flex items-center gap-2">
                                 <i className="fa-solid fa-shield-halved text-sm"></i> Women Wellness
                             </h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Adolescent Health</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Vaccination (HPV)</a></li>
                                 <li><a href="#services" className="hover:text-primary-600 transition block">Preventive Checkups</a></li>
@@ -197,10 +197,10 @@ export default function Home() {
                         CLINIC <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
-                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:block transition-all duration-300 z-50 min-w-[420px] grid grid-cols-2 gap-6 animate-fade-in">
+                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[420px] grid-cols-2 gap-6 animate-fade-in">
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Physical Trust</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-hospital text-primary-400 mr-2 w-4"></i> Clinic Overview & Photos</a></li>
                                 <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-sparkles text-primary-400 mr-2 w-4"></i> Hygiene & Facilities</a></li>
                                 <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-location-dot text-primary-400 mr-2 w-4"></i> MGM Belapur Location</a></li>
@@ -208,7 +208,7 @@ export default function Home() {
                         </div>
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Patient Info</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-clock text-primary-400 mr-2 w-4"></i> Timings & OPD Schedule</a></li>
                                 <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-file-invoice-dollar text-primary-400 mr-2 w-4"></i> Insurance / TPA Support</a></li>
                                 <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-laptop-medical text-primary-400 mr-2 w-4"></i> Virtual Consultation</a></li>
@@ -223,10 +223,10 @@ export default function Home() {
                         RESOURCES <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
-                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:block transition-all duration-300 z-50 min-w-[420px] grid grid-cols-2 gap-6 animate-fade-in">
+                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[420px] grid-cols-2 gap-6 animate-fade-in">
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Knowledge</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#community" className="hover:text-primary-600 transition block"><i className="fa-solid fa-book-open text-primary-400 mr-2 w-4"></i> Blog & Articles</a></li>
                                 <li><a href="https://www.youtube.com/@DrVaibhavicare" target="_blank" className="hover:text-primary-600 transition block"><i className="fa-brands fa-youtube text-primary-400 mr-2 w-4"></i> Educational Videos</a></li>
                                 <li><a href="#community" className="hover:text-primary-600 transition block"><i className="fa-solid fa-calculator text-primary-400 mr-2 w-4"></i> Pregnancy Tips</a></li>
@@ -234,7 +234,7 @@ export default function Home() {
                         </div>
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Patient Portal</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
+                            <ul className="space-y-3 text-xs font-medium text-gray-600">
                                 <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-file-arrow-down text-primary-400 mr-2 w-4"></i> Download Reports</a></li>
                                 <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-file-pdf text-primary-400 mr-2 w-4"></i> Diet Charts & PDFs</a></li>
                                 <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-heart-circle-check text-primary-400 mr-2 w-4"></i> Care Instructions</a></li>
