@@ -109,25 +109,18 @@ export default function Home() {
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Doctor Profile</h4>
                             <ul className="space-y-2.5 text-xs font-medium text-gray-600">
                                 <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-user-md text-primary-400 mr-2 w-4"></i> About Doctor</a></li>
-                                <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-graduation-cap text-primary-400 mr-2 w-4"></i> Qualification (MS OBGY)</a></li>
-                                <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-award text-primary-400 mr-2 w-4"></i> Experience & Awards</a></li>
+                                <li><a href="#experience" className="hover:text-primary-600 transition block"><i className="fa-solid fa-award text-primary-400 mr-2 w-4"></i> Awards & Experience</a></li>
                                 <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-certificate text-primary-400 mr-2 w-4"></i> Memberships</a></li>
                             </ul>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mt-6 mb-3 border-b pb-1">Philosophy</h4>
                             <ul className="space-y-2.5 text-xs font-medium text-gray-600">
-                                <li><a href="#mission-vision" className="hover:text-primary-600 transition block"><i className="fa-solid fa-hand-holding-heart text-primary-400 mr-2 w-4"></i> Patient Care Approach</a></li>
-                                <li><a href="#mission-vision" className="hover:text-primary-600 transition block"><i className="fa-solid fa-venus text-primary-400 mr-2 w-4"></i> Women-Centric Care</a></li>
+                                <li><a href="#mission-vision" className="hover:text-primary-600 transition block"><i className="fa-solid fa-hand-holding-heart text-primary-400 mr-2 w-4"></i> Mission, Vision & Values</a></li>
                             </ul>
                         </div>
                         <div>
                             <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Media & Recognition</h4>
                             <ul className="space-y-2.5 text-xs font-medium text-gray-600">
-                                <li><a href="https://www.youtube.com/@DrVaibhavicare" target="_blank" className="hover:text-primary-600 transition block"><i className="fa-solid fa-video text-primary-400 mr-2 w-4"></i> Interviews & Talks</a></li>
-                                <li><a href="#community" className="hover:text-primary-600 transition block"><i className="fa-solid fa-newspaper text-primary-400 mr-2 w-4"></i> Publications</a></li>
-                            </ul>
-                            <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mt-6 mb-3 border-b pb-1">Support</h4>
-                            <ul className="space-y-2.5 text-xs font-medium text-gray-600">
-                                <li><a href="#faq" className="hover:text-primary-600 transition block"><i className="fa-solid fa-circle-question text-primary-400 mr-2 w-4"></i> FAQs & Queries</a></li>
+                                <li><a href="#community" className="hover:text-primary-600 transition block"><i className="fa-solid fa-newspaper text-primary-400 mr-2 w-4"></i> Community & Health Tips</a></li>
                             </ul>
                         </div>
                     </div>
@@ -343,8 +336,17 @@ export default function Home() {
                 {/*  Hero Image  */}
                 <div className="lg:col-span-5 relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary-200 to-brand-peach blob-shape transform rotate-12 scale-105 opacity-50 pointer-events-none"></div>
-                    <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-white max-h-[380px] xl:max-h-[440px]">
-                        <img src="images/doctor-hero.jpg" alt="Dr. Vaibhavi Dhenge" className="w-full h-[380px] xl:h-[440px] object-cover object-top" />
+                    <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-white aspect-square max-h-[380px] xl:max-h-[440px] flex items-center justify-center">
+                        <img src="images/doctor-hero-warm.jpg" alt="Dr. Vaibhavi Dhenge OBGY" className="w-full h-full object-cover object-center" />
+                        
+                        {/* Elegant Glassmorphism Floating Nameplate Badge */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md py-2.5 px-6 rounded-2xl shadow-2xl border border-white flex items-center gap-3 z-20 w-max">
+                            <div className="w-2.5 h-2.5 rounded-full bg-primary-500 animate-pulse shrink-0"></div>
+                            <div className="text-left">
+                                <p className="text-sm sm:text-base font-bold font-serif text-gray-900 leading-none mb-1">Dr. Vaibhavi Dhenge</p>
+                                <p className="text-[10px] sm:text-xs font-bold text-primary-600 uppercase tracking-widest leading-none">MS OBGY | MBBS</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -362,7 +364,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div data-aos="fade-up" className="lg:col-span-5 relative order-2 lg:order-1 max-h-[380px] xl:max-h-[420px]">
-                    <img src="images/doctor-about-new.jpg" alt="Dr. Vaibhavi Dhenge OBGY" className="rounded-[2rem] shadow-premium object-cover h-[380px] xl:h-[420px] w-full" />
+                    <img src="images/doctor-about-perfect.jpg" alt="Dr. Vaibhavi Dhenge OBGY" className="rounded-[2rem] shadow-premium object-cover h-[380px] xl:h-[420px] w-full" />
                 </div>
                 
                 <div className="lg:col-span-7 order-1 lg:order-2" data-aos="fade-up" data-aos-delay="200">
