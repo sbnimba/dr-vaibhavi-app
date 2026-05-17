@@ -350,45 +350,65 @@ export default function Home() {
     {/*  About Section  */}
     <section id="about" className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-up" className="relative order-2 lg:order-1">
-                    <img src="images/doctor-about.png" alt="Dr. Vaibhavi at Clinic" className="rounded-[2rem] shadow-premium object-cover h-[550px] w-full" />
-                    <div className="absolute -bottom-10 -right-10 bg-primary-900 text-white p-8 rounded-3xl shadow-xl max-w-xs hidden md:block">
-                        <i className="fa-solid fa-quote-left text-3xl text-primary-400 mb-4"></i>
-                        <p className="font-serif italic text-lg leading-relaxed">"My mission is to listen, understand, and provide the highest quality of care for women at every stage of their lives."</p>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div data-aos="fade-up" className="lg:col-span-5 relative order-2 lg:order-1">
+                    <img src="images/doctor-about-new.jpg" alt="Dr. Vaibhavi Dhenge OBGY" className="rounded-[2rem] shadow-premium object-cover h-[550px] w-full" />
+                    <div className="absolute -bottom-10 -right-6 bg-primary-900 text-white p-8 rounded-3xl shadow-xl max-w-xs hidden md:block border border-primary-800/50 z-20">
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary-300 mb-2 flex items-center gap-2">
+                            <i className="fa-solid fa-bullseye text-primary-400"></i> Our Mission
+                        </h4>
+                        <p className="font-serif italic text-base leading-relaxed">"To be the doctor every woman deserves — one who listens without judgment, understands without rushing, and delivers care that is both medically excellent and deeply human."</p>
                     </div>
                 </div>
                 
-                <div className="order-1 lg:order-2" data-aos="fade-up" data-aos-delay="200">
+                <div className="lg:col-span-7 order-1 lg:order-2" data-aos="fade-up" data-aos-delay="200">
                     <h2 className="text-sm font-bold tracking-widest text-primary-600 uppercase mb-3">About The Doctor</h2>
                     <h3 className="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-6">Dr. Vaibhavi Dhenge</h3>
                     <p className="text-lg font-medium text-gray-700 mb-6">MBBS, MS (Obstetrics & Gynaecology) <br /> <span className="text-primary-600">Senior Resident, MGM Belapur Hospital</span></p>
                     
-                    <p className="text-gray-600 leading-relaxed mb-6">
-                        With over 4 years of dedicated experience, Dr. Vaibhavi is committed to providing evidence-based, compassionate care. Having completed a rigorous Medical Officer (MO) ship in rural areas, she brings a deep, grounded understanding of complex grassroots complications.
+                    <p className="text-gray-600 leading-relaxed mb-6 font-sans text-base sm:text-lg">
+                        Dr. Vaibhavi Dhenge is an Obstetrician and Gynecologist with experience across 1,000+ obstetric and gynecological cases — from high-risk pregnancies and complex surgeries to everyday women's health concerns.
                     </p>
-                    <p className="text-gray-600 leading-relaxed mb-8">
-                        This unique rural experience, combined with her advanced practice at MGM Belapur, equips her to seamlessly handle both intricate rural medical challenges and modern-day urban gynaecological complications. She combines state-of-the-art medical expertise with a warm, patient-first approach.
+                    <p className="text-gray-600 leading-relaxed mb-6 font-sans text-base sm:text-lg">
+                        Having worked across premier institutions including MGM Hospital Belapur, Kashibai Navale Medical College Pune, Motherhood Hospital and Shri Vasantrao Naik Government Medical College Yavatmal, she brings a uniquely well-rounded perspective — one built on both advanced urban clinical practice and the grit of frontline rural care.
+                    </p>
+                    <p className="text-gray-600 leading-relaxed mb-8 font-sans text-base sm:text-lg">
+                        She combines surgical precision with a warm, unhurried approach — because she believes every woman deserves not just expert care, but care that truly listens.
                     </p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
-                                <i className="fa-solid fa-user-md text-xl"></i>
+                    {/* Vision Box */}
+                    <div className="bg-primary-50/60 border-l-4 border-primary-500 p-6 rounded-r-2xl mb-8 shadow-sm">
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary-700 mb-2 flex items-center gap-2">
+                            <i className="fa-solid fa-eye text-primary-500"></i> Our Vision
+                        </h4>
+                        <p className="font-serif italic text-gray-800 text-base sm:text-lg leading-relaxed">
+                            "A world where every woman — regardless of where she comes from — has access to compassionate, expert, and dignified healthcare at every stage of her life."
+                        </p>
+                    </div>
+
+                    {/* Values 3-icon strip */}
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Core Values</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div className="w-10 h-10 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center text-lg mb-3">
+                                <i className="fa-solid fa-handshake-angle text-xl"></i>
                             </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900">Expert Care</h4>
-                                <p className="text-sm text-gray-600">Personalized treatment plans tailored to your body's unique needs.</p>
-                            </div>
+                            <h5 className="font-bold text-gray-900 mb-1">Trust</h5>
+                            <p className="text-xs text-gray-600 leading-relaxed">A safe space where no concern is too small and no question goes unheard.</p>
                         </div>
-                        <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
-                                <i className="fa-solid fa-hospital text-xl"></i>
+                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg mb-3">
+                                <i className="fa-solid fa-award text-xl"></i>
                             </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900">Top Facilities</h4>
-                                <p className="text-sm text-gray-600">Associated with premium hospitals like MGM Belapur for safe deliveries.</p>
+                            <h5 className="font-bold text-gray-900 mb-1">Excellence</h5>
+                            <p className="text-xs text-gray-600 leading-relaxed">Evidence-based, modern care backed by 1,000+ real clinical experiences.</p>
+                        </div>
+                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg mb-3">
+                                <i className="fa-solid fa-spa text-xl"></i>
                             </div>
+                            <h5 className="font-bold text-gray-900 mb-1">Dignity</h5>
+                            <p className="text-xs text-gray-600 leading-relaxed">Every woman treated with the privacy, respect, and warmth she deserves.</p>
                         </div>
                     </div>
                     
