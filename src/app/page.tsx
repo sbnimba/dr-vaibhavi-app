@@ -337,7 +337,7 @@ export default function Home() {
                 <div className="lg:col-span-5 relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary-200 to-brand-peach blob-shape transform rotate-12 scale-105 opacity-50 pointer-events-none"></div>
                     <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-white aspect-square max-h-[380px] xl:max-h-[440px] flex items-center justify-center">
-                        <img src="images/doctor-hero-warm.jpg" alt="Dr. Vaibhavi Dhenge OBGY" className="w-full h-full object-cover object-center" />
+                        <img src="images/doctor-hero-hd.jpg" alt="Dr. Vaibhavi Dhenge OBGY" className="w-full h-full object-cover object-center" />
                         
                         {/* Elegant Glassmorphism Floating Nameplate Badge */}
                         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md py-2.5 px-6 rounded-2xl shadow-2xl border border-white flex items-center gap-3 z-20 w-max">
