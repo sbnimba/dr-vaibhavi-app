@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import AOS from 'aos';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
@@ -733,8 +734,10 @@ export default function Home() {
                     </div>
                     <div className="p-5">
                         <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">Pregnancy Tips</span>
-                        <h4 className="font-bold text-sm sm:text-base mt-1.5 mb-2 text-gray-900">Nutrition guide for your first trimester</h4>
-                        <a href="#appointment" className="text-primary-600 text-xs font-bold flex items-center gap-1">Read More &rarr;</a>
+                        <Link href="/nutrition-first-trimester" className="block outline-none group">
+                            <h4 className="font-bold text-sm sm:text-base mt-1.5 mb-2 text-gray-900 group-hover:text-primary-600 transition-colors">Nutrition guide for your first trimester</h4>
+                        </Link>
+                        <Link href="/nutrition-first-trimester" className="text-primary-600 text-xs font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
                 </div>
                 <div className="bg-[#FAF9F6] rounded-2xl overflow-hidden shadow-sm hover:shadow-premium transition border border-gray-100 flex flex-col justify-between">
