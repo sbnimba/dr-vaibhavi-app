@@ -76,26 +76,26 @@ export default function Home() {
 
     {/*  Header / Navbar  */}
     <header className="fixed w-full top-0 z-50 glass-header transition-all duration-300 py-3" id="navbar">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-4">
             {/*  Logo  */}
-            <a href="#" className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white shadow-lg">
+            <a href="#" className="flex items-center gap-2 xl:gap-3 shrink-0">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white shadow-lg shrink-0">
                     <i className="fa-solid fa-spa"></i>
                 </div>
-                <div>
-                    <h1 className="text-xl font-serif font-bold text-gray-900 tracking-wide">Dr. Vaibhavi Dhenge</h1>
-                    <p className="text-xs text-primary-600 font-bold tracking-widest uppercase">MS OBGY | MBBS</p>
+                <div className="shrink-0">
+                    <h1 className="text-lg xl:text-xl font-serif font-bold text-gray-900 tracking-wide whitespace-nowrap">Dr. Vaibhavi Dhenge</h1>
+                    <p className="text-[10px] xl:text-xs text-primary-600 font-bold tracking-widest uppercase whitespace-nowrap">MS OBGY | MBBS</p>
                 </div>
             </a>
 
             {/*  Desktop Nav  */}
-            <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+            <nav className="hidden lg:flex items-center space-x-3 xl:space-x-5">
                 {/* 1. HOME */}
-                <a href="#" className="text-[11px] xl:text-xs font-bold text-primary-700 hover:text-primary-600 transition tracking-wider">HOME</a>
+                <a href="#" className="text-[11px] xl:text-xs font-bold text-primary-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">HOME</a>
 
                 {/* 2. ABOUT */}
-                <div className="relative group py-2">
-                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer">
+                <div className="relative group py-2 shrink-0">
+                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer whitespace-nowrap">
                         ABOUT <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
@@ -129,8 +129,8 @@ export default function Home() {
                 </div>
 
                 {/* 3. SERVICES (Mega Menu) */}
-                <div className="relative group py-2">
-                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer">
+                <div className="relative group py-2 shrink-0">
+                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer whitespace-nowrap">
                         SERVICES <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Mega Dropdown */}
@@ -194,8 +194,8 @@ export default function Home() {
                 </div>
 
                 {/* 4. CLINIC */}
-                <div className="relative group py-2">
-                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer">
+                <div className="relative group py-2 shrink-0">
+                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer whitespace-nowrap">
                         CLINIC <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
@@ -220,8 +220,8 @@ export default function Home() {
                 </div>
 
                 {/* 5. RESOURCES */}
-                <div className="relative group py-2">
-                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer">
+                <div className="relative group py-2 shrink-0">
+                    <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer whitespace-nowrap">
                         RESOURCES <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
@@ -246,13 +246,13 @@ export default function Home() {
                 </div>
 
                 {/* 6. TESTIMONIALS */}
-                <a href="#testimonials" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider">TESTIMONIALS</a>
+                <a href="#testimonials" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">TESTIMONIALS</a>
 
                 {/* 7. CONTACT US */}
-                <a href="#appointment" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider">CONTACT US</a>
+                <a href="#appointment" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">CONTACT US</a>
                 
                 {/*  Language Toggle with Blinking Arrow  */}
-                <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-full shadow-sm border border-gray-100 relative group cursor-pointer shrink-0">
+                <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-full shadow-sm border border-gray-100 relative group cursor-pointer shrink-0 whitespace-nowrap">
                     <div className="absolute -left-5 top-1/2 -translate-y-1/2 text-primary-500 animate-pulse text-base" title="Change Language">
                         <i className="fa-solid fa-caret-right"></i>
                     </div>
@@ -270,7 +270,7 @@ export default function Home() {
                 </div>
 
                 {/* 8. APPOINTMENT BUTTON (Important Contrasting Rose Gold / Coral CTA) */}
-                <a href="#appointment" className="bg-gradient-to-r from-rose-500 via-pink-600 to-purple-600 text-white px-5 py-2 rounded-full text-[11px] xl:text-xs font-bold hover:from-rose-600 hover:to-purple-700 transition shadow-[0_8px_16px_rgba(225,29,72,0.25)] hover:shadow-[0_12px_20px_rgba(225,29,72,0.4)] hover:-translate-y-0.5 transform duration-300 shrink-0 flex items-center gap-1.5 border border-pink-400/30">
+                <a href="#appointment" className="bg-gradient-to-r from-rose-500 via-pink-600 to-purple-600 text-white px-5 py-2 rounded-full text-[11px] xl:text-xs font-bold hover:from-rose-600 hover:to-purple-700 transition shadow-[0_8px_16px_rgba(225,29,72,0.25)] hover:shadow-[0_12px_20px_rgba(225,29,72,0.4)] hover:-translate-y-0.5 transform duration-300 shrink-0 whitespace-nowrap flex items-center gap-1.5 border border-pink-400/30">
                     <i className="fa-regular fa-calendar-check text-sm animate-bounce"></i> Book Appointment
                 </a>
             </nav>
