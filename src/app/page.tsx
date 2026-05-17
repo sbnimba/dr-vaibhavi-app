@@ -1,16 +1,17 @@
 "use client";
 import { useEffect } from 'react';
+import AOS from 'aos';
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 export default function Home() {
     useEffect(() => {
         // Initialize AOS
         if (typeof window !== 'undefined') {
-            const AOS = require('aos');
             AOS.init({ once: true });
             
             // Initialize Swiper
-            const Swiper = require('swiper');
-            new Swiper('.testimonials-slider', {
+            new Swiper('.testimonial-swiper', {
                 slidesPerView: 1,
                 spaceBetween: 30,
                 loop: true,
