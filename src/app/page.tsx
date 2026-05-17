@@ -278,7 +278,7 @@ export default function Home() {
     </header>
 
     {/*  Hero Section  */}
-    <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden mt-10">
+    <section className="relative pt-20 pb-16 lg:pt-24 lg:pb-24 overflow-hidden">
         {/*  Background Elements  */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
             <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-peach/30 rounded-full blur-3xl opacity-60"></div>
