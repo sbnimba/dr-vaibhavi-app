@@ -50,6 +50,22 @@ export default function Home() {
         window.open(whatsappUrl, '_blank');
     };
 
+    const changeLanguage = (langCode: string) => {
+        const selectField = document.querySelector(".goog-te-combo") as HTMLSelectElement;
+        if (selectField) {
+            selectField.value = langCode;
+            selectField.dispatchEvent(new Event('change'));
+        } else {
+            setTimeout(() => {
+                const retrySelect = document.querySelector(".goog-te-combo") as HTMLSelectElement;
+                if (retrySelect) {
+                    retrySelect.value = langCode;
+                    retrySelect.dispatchEvent(new Event('change'));
+                }
+            }, 500);
+        }
+    };
+
     return (
         <main>
             
@@ -84,7 +100,7 @@ export default function Home() {
                         <i className="fa-solid fa-caret-right"></i>
                     </div>
                     <i className="fa-solid fa-language text-gray-400 group-hover:text-primary-500 transition"></i>
-                    <select id="lang-select" onchange="changeLanguage(this.value)" className="bg-transparent text-sm font-bold text-primary-700 outline-none cursor-pointer appearance-none pr-2">
+                    <select id="lang-select" onChange={(e) => changeLanguage(e.target.value)} className="bg-transparent text-sm font-bold text-primary-700 outline-none cursor-pointer appearance-none pr-2">
                         <option value="en">English (EN)</option>
                         <option value="hi">हिंदी (HI)</option>
                         <option value="mr">मराठी (MR)</option>
@@ -507,7 +523,7 @@ export default function Home() {
                     </div>
 
                     <div className="p-12 lg:p-16 bg-white">
-                        <form className="space-y-6" onSubmit="submitForm(event)">
+                        <form className="space-y-6" onSubmit={submitForm}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-700 mb-2">Patient Name</label>
@@ -531,7 +547,7 @@ export default function Home() {
                             </div>
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">Health Concern (Optional)</label>
-                                <textarea name="Health_Concern" rows="3" className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50" placeholder="e.g. Pregnancy checkup, PCOS query..."></textarea>
+                                <textarea name="Health_Concern" rows={3} className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50" placeholder="e.g. Pregnancy checkup, PCOS query..."></textarea>
                             </div>
                             <button type="submit" className="w-full bg-primary-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-500/30 hover:bg-primary-700 hover:-translate-y-1 transition transform duration-300">
                                 Request Appointment
