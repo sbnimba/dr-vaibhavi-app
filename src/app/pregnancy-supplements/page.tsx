@@ -18,7 +18,7 @@ export default function PregnancySupplements() {
                         </div>
                     </Link>
 
-                    <Link href="/" className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-emerald-50 text-emerald-800 font-bold text-xs sm:text-sm hover:bg-emerald-100 transition shadow-sm border border-emerald-100/50 outline-none">
+                    <Link href="/#community" className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-emerald-50 text-emerald-800 font-bold text-xs sm:text-sm hover:bg-emerald-100 transition shadow-sm border border-emerald-100/50 outline-none">
                         <i className="fa-solid fa-arrow-left text-xs"></i> Back to Home
                     </Link>
                 </div>
