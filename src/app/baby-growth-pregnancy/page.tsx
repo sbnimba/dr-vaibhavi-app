@@ -381,9 +381,7 @@ export default function BabyGrowthPregnancy() {
                                 <Link href="/#appointment" className="w-full sm:w-auto bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 text-white px-8 py-3.5 rounded-full font-bold text-xs sm:text-sm shadow-lg shadow-teal-500/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 border border-teal-400/30 outline-none">
                                     <i className="fa-regular fa-calendar-check text-base animate-bounce"></i> Book Consultation
                                 </Link>
-                                <a href="https://wa.me/919284880359" target="_blank" className="w-full sm:w-auto bg-green-500 text-white px-8 py-3.5 rounded-full font-bold text-xs sm:text-sm shadow-lg shadow-green-500/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 outline-none">
-                                    <i className="fa-brands fa-whatsapp text-lg"></i> WhatsApp Consult
-                                </a>
+
                             </div>
                         </div>
                     </div>

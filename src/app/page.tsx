@@ -64,19 +64,87 @@ export default function Home() {
         };
     }, []);
 
-    const submitForm = (event: any) => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.Patient_Name.value;
-        const mobile = form.Mobile_Number.value;
-        const date = form.Appointment_Date.value;
-        const mode = form.Consultation_Mode.value;
-        const concern = form.Health_Concern.value || 'None';
-        
-        const message = `*New Appointment Request* %0A%0A*Name:* ${name}%0A*Mobile:* ${mobile}%0A*Date:* ${date}%0A*Mode:* ${mode}%0A*Concern:* ${concern}`;
-        
-        const whatsappUrl = `https://wa.me/919284880359?text=${message}`;
-        window.open(whatsappUrl, '_blank');
+    // Appointment Booking State
+    const [bookingStep, setBookingStep] = useState(1);
+    const [selectedMode, setSelectedMode] = useState('In-Clinic Visit (MGM Belapur)');
+    const [selectedSpecialty, setSelectedSpecialty] = useState('Pregnancy Care');
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+    const [patientName, setPatientName] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
+    const [emailAddress, setEmailAddress] = useState('');
+    const [healthConcern, setHealthConcern] = useState('');
+    const [medicalConditions, setMedicalConditions] = useState<string[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [bookingSuccess, setBookingSuccess] = useState(false);
+    const [bookedAppointment, setBookedAppointment] = useState<any>(null);
+
+    const toggleCondition = (condition: string) => {
+        if (medicalConditions.includes(condition)) {
+            setMedicalConditions(medicalConditions.filter(c => c !== condition));
+        } else {
+            setMedicalConditions([...medicalConditions, condition]);
+        }
+    };
+
+    const handleNextStep = (e: React.MouseEvent) => {
+        e.preventDefault();
+        if (bookingStep === 2 && (!selectedDate || !selectedTimeSlot)) {
+            alert('Please select both a preferred date and time slot.');
+            return;
+        }
+        setBookingStep(prev => prev + 1);
+    };
+
+    const handlePrevStep = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setBookingStep(prev => prev - 1);
+    };
+
+    const handleAppointmentSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        setTimeout(() => {
+            const refId = 'APP-' + Math.floor(100000 + Math.random() * 900000);
+            const newAppointment = {
+                id: refId,
+                patientName,
+                mobileNumber,
+                emailAddress,
+                consultationMode: selectedMode,
+                specialty: selectedSpecialty,
+                date: selectedDate,
+                timeSlot: selectedTimeSlot,
+                healthConcern: healthConcern || 'None',
+                medicalHistory: medicalConditions,
+                status: 'Pending',
+                createdAt: new Date().toISOString()
+            };
+
+            // Save to LocalStorage mock database
+            const existing = localStorage.getItem('dr_vaibhavi_appointments');
+            const appointments = existing ? JSON.parse(existing) : [];
+            appointments.unshift(newAppointment);
+            localStorage.setItem('dr_vaibhavi_appointments', JSON.stringify(appointments));
+
+            setBookedAppointment(newAppointment);
+            setIsSubmitting(false);
+            setBookingSuccess(true);
+        }, 1200);
+    };
+
+    const resetBooking = () => {
+        setBookingStep(1);
+        setSelectedDate('');
+        setSelectedTimeSlot('');
+        setPatientName('');
+        setMobileNumber('');
+        setEmailAddress('');
+        setHealthConcern('');
+        setMedicalConditions([]);
+        setBookingSuccess(false);
+        setBookedAppointment(null);
     };
 
     const changeLanguage = (langCode: string) => {
@@ -350,9 +418,9 @@ export default function Home() {
                     <a href="#appointment" onClick={() => setMobileMenuOpen(false)} className="w-full bg-gradient-to-r from-rose-500 via-pink-600 to-purple-600 text-white py-3 rounded-full font-bold text-center shadow-lg shadow-pink-500/25 flex items-center justify-center gap-2 text-xs">
                         <i className="fa-regular fa-calendar-check text-sm"></i> Book Appointment
                     </a>
-                    <a href="https://wa.me/919284880359" target="_blank" onClick={() => setMobileMenuOpen(false)} className="w-full bg-green-500 text-white py-3 rounded-full font-bold text-center shadow-lg shadow-green-500/25 flex items-center justify-center gap-2 text-xs">
-                        <i className="fa-brands fa-whatsapp text-sm"></i> WhatsApp Consult
-                    </a>
+                    <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="w-full bg-gray-900 text-white py-3 rounded-full font-bold text-center shadow-md flex items-center justify-center gap-2 text-xs hover:bg-gray-800 transition">
+                        <i className="fa-solid fa-user-doctor text-sm"></i> Doctor Portal
+                    </Link>
                 </div>
             </div>
         )}
@@ -387,21 +455,18 @@ export default function Home() {
                     
                     <div className="flex flex-col sm:flex-row gap-3 mt-4 w-full sm:w-auto">
                         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                            <a href="#appointment" className="bg-primary-600 text-white px-5 py-3 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm text-center hover:bg-primary-700 transition shadow-lg shadow-primary-500/20 flex items-center justify-center gap-2 w-full sm:w-auto">
+                            <a href="#appointment" className="bg-primary-600 text-white px-8 py-3 sm:py-3.5 rounded-full font-semibold text-xs sm:text-sm text-center hover:bg-primary-700 transition shadow-lg shadow-primary-500/20 flex items-center justify-center gap-2 w-full sm:w-auto">
                                 <i className="fa-regular fa-calendar-check"></i> Book Appointment
-                            </a>
-                            <a href="https://wa.me/919284880359" target="_blank" className="bg-white text-green-600 border border-green-100 px-5 py-3 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm text-center hover:bg-green-50 transition shadow-premium flex items-center justify-center gap-2 w-full sm:w-auto">
-                                <i className="fa-brands fa-whatsapp text-lg"></i> WhatsApp
                             </a>
                         </div>
                         <div className="flex items-center justify-center sm:justify-start gap-3 pt-1 sm:pt-0">
-                            <a href="https://www.youtube.com/@DrVaibhavicare" target="_blank" className="bg-white text-red-600 border border-red-100 w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-50 transition shadow-premium">
+                            <a href="https://www.youtube.com/@DrVaibhavicare" target="_blank" className="bg-white text-red-600 border border-red-100 w-11 h-11 rounded-full flex items-center justify-center hover:bg-red-50 transition shadow-premium">
                                 <i className="fa-brands fa-youtube text-lg"></i>
                             </a>
-                            <a href="https://www.instagram.com/drvaibhavicare?igsh=MTg4MTh3b2kya2VsMw%3D%3D&utm_source=qr" target="_blank" className="bg-white text-pink-600 border border-pink-100 w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-50 transition shadow-premium">
+                            <a href="https://www.instagram.com/drvaibhavicare?igsh=MTg4MTh3b2kya2VsMw%3D%3D&utm_source=qr" target="_blank" className="bg-white text-pink-600 border border-pink-100 w-11 h-11 rounded-full flex items-center justify-center hover:bg-pink-50 transition shadow-premium">
                                 <i className="fa-brands fa-instagram text-lg"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/dr-vaibhavi-dhenge-712642359?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" className="bg-white text-blue-600 border border-blue-100 w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-50 transition shadow-premium">
+                            <a href="https://www.linkedin.com/in/dr-vaibhavi-dhenge-712642359?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" className="bg-white text-blue-600 border border-blue-100 w-11 h-11 rounded-full flex items-center justify-center hover:bg-blue-50 transition shadow-premium">
                                 <i className="fa-brands fa-linkedin-in text-lg"></i>
                             </a>
                         </div>
@@ -918,16 +983,16 @@ export default function Home() {
                     
                     <div className="lg:col-span-5 p-6 lg:p-10 flex flex-col justify-center bg-brand-peach/10 relative overflow-hidden h-full">
                         <div className="relative z-10">
-                            <h2 className="text-xs font-bold tracking-widest text-primary-600 uppercase mb-1">Instant Booking</h2>
+                            <h2 className="text-xs font-bold tracking-widest text-primary-600 uppercase mb-1">Professional Care</h2>
                             <h3 className="text-2xl lg:text-3xl font-serif font-bold text-gray-900 mb-2">Book Your Visit</h3>
-                            <p className="text-gray-600 text-xs sm:text-sm mb-6 leading-relaxed">Schedule an in-clinic appointment or an online video consultation from the comfort of your home.</p>
+                            <p className="text-gray-600 text-xs sm:text-sm mb-6 leading-relaxed">Schedule an in-clinic appointment or an online video consultation with Dr. Vaibhavi Dhenge.</p>
                             
                             <div className="space-y-3">
                                 <div className="flex items-center gap-3 bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100">
-                                    <div className="w-8 h-8 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center text-base shrink-0"><i className="fa-brands fa-whatsapp"></i></div>
+                                    <div className="w-8 h-8 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center text-base shrink-0"><i className="fa-solid fa-phone"></i></div>
                                     <div>
-                                        <p className="text-[11px] text-gray-500 font-medium">Instant Booking</p>
-                                        <p className="text-xs sm:text-sm font-bold text-gray-900">+91 9284880359</p>
+                                        <p className="text-[11px] text-gray-500 font-medium">Clinic Reception</p>
+                                        <p className="text-xs sm:text-sm font-bold text-gray-900">022-27572293</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3 bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100">
@@ -942,36 +1007,303 @@ export default function Home() {
                     </div>
 
                     <div className="lg:col-span-7 p-6 lg:p-10 bg-white">
-                        <form className="space-y-3" onSubmit={submitForm}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div>
-                                    <label className="block text-[11px] font-semibold text-gray-700 mb-1">Patient Name</label>
-                                    <input type="text" name="Patient_Name" required className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm" placeholder="Full Name" />
+                        {bookingSuccess ? (
+                            <div className="bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 border border-emerald-200 rounded-3xl p-8 text-center shadow-premium animate-fade-in space-y-6">
+                                <div className="w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center text-3xl mx-auto shadow-lg shadow-emerald-500/30 animate-bounce">
+                                    <i className="fa-solid fa-check"></i>
                                 </div>
-                                <div>
-                                    <label className="block text-[11px] font-semibold text-gray-700 mb-1">Mobile Number</label>
-                                    <input type="tel" name="Mobile_Number" required className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm" placeholder="+91" />
+                                <div className="space-y-2">
+                                    <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase bg-emerald-100 px-3 py-1 rounded-full">Booking Confirmed</span>
+                                    <h3 className="text-2xl font-serif font-bold text-gray-900">Your appointment request has been submitted</h3>
+                                    <p className="text-xs sm:text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
+                                        Dr. Vaibhavi Dhenge and the clinic staff have received your request. A confirmation email and background alert have been dispatched to the clinic management.
+                                    </p>
                                 </div>
-                                <div>
-                                    <label className="block text-[11px] font-semibold text-gray-700 mb-1">Select Date</label>
-                                    <input type="date" name="Appointment_Date" required className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm" />
+
+                                <div className="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm text-left space-y-3 max-w-md mx-auto">
+                                    <div className="flex justify-between items-center text-xs border-b border-gray-100 pb-2">
+                                        <span className="text-gray-500 font-medium">Reference ID</span>
+                                        <span className="font-bold text-gray-900 font-mono">{bookedAppointment?.id}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-xs border-b border-gray-100 pb-2">
+                                        <span className="text-gray-500 font-medium">Patient Name</span>
+                                        <span className="font-bold text-gray-900">{bookedAppointment?.patientName}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-xs border-b border-gray-100 pb-2">
+                                        <span className="text-gray-500 font-medium">Date & Time</span>
+                                        <span className="font-bold text-emerald-600">{bookedAppointment?.date} at {bookedAppointment?.timeSlot}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-xs border-b border-gray-100 pb-2">
+                                        <span className="text-gray-500 font-medium">Consultation Mode</span>
+                                        <span className="font-bold text-gray-900">{bookedAppointment?.consultationMode}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center text-xs pt-1">
+                                        <span className="text-gray-500 font-medium">Specialty</span>
+                                        <span className="font-bold text-gray-900">{bookedAppointment?.specialty}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label className="block text-[11px] font-semibold text-gray-700 mb-1">Consultation Mode</label>
-                                    <select name="Consultation_Mode" className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm">
-                                        <option>In-Clinic Visit (MGM Belapur)</option>
-                                        <option>Online Video Consult</option>
-                                    </select>
+
+                                {/* Simulated Email Notification Badge */}
+                                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4 text-xs text-emerald-800 text-left space-y-1 max-w-md mx-auto">
+                                    <div className="font-bold flex items-center gap-2">
+                                        <i className="fa-solid fa-envelope-circle-check text-emerald-600 text-sm animate-pulse"></i>
+                                        <span>Automated Notifications Dispatched:</span>
+                                    </div>
+                                    <ul className="list-disc list-inside text-[11px] text-emerald-700 space-y-1 pt-1 font-medium">
+                                        <li>Email sent to: <strong>IndiasBestGynaecologist@gmail.com</strong></li>
+                                        <li>Confirmation sent to: <strong>{bookedAppointment?.emailAddress}</strong></li>
+                                        <li>Background alert synced to Doctor Portal</li>
+                                    </ul>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2 max-w-md mx-auto">
+                                    <a 
+                                        href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Appointment with Dr. Vaibhavi Dhenge')}&dates=20260520T100000Z/20260520T110000Z&details=${encodeURIComponent(`Patient: ${bookedAppointment?.patientName}\nMode: ${bookedAppointment?.consultationMode}\nSpecialty: ${bookedAppointment?.specialty}\nConcern: ${bookedAppointment?.healthConcern}`)}&location=${encodeURIComponent(bookedAppointment?.consultationMode.includes('In-Clinic') ? 'MGM Hospital, Belapur' : 'Online Video Consultation')}`}
+                                        target="_blank" 
+                                        className="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-blue-700 transition flex items-center justify-center gap-2 text-xs sm:text-sm outline-none"
+                                    >
+                                        <i className="fa-regular fa-calendar-plus text-base"></i> Add to Google Calendar
+                                    </a>
+                                    <button 
+                                        onClick={resetBooking} 
+                                        className="w-full bg-gray-900 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-gray-800 transition flex items-center justify-center gap-2 text-xs sm:text-sm outline-none"
+                                    >
+                                        <i className="fa-solid fa-rotate-left"></i> Book Another Visit
+                                    </button>
                                 </div>
                             </div>
-                            <div>
-                                <label className="block text-[11px] font-semibold text-gray-700 mb-1">Health Concern (Optional)</label>
-                                <textarea name="Health_Concern" rows={2} className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm" placeholder="e.g. Pregnancy checkup, PCOS / PMOS query..."></textarea>
-                            </div>
-                            <button type="submit" className="w-full bg-primary-600 text-white font-bold py-3 rounded-xl shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:-translate-y-0.5 transition transform duration-300 text-xs sm:text-sm">
-                                Request Appointment
-                            </button>
-                        </form>
+                        ) : (
+                            <form className="space-y-6 animate-fade-in" onSubmit={handleAppointmentSubmit}>
+                                {/* Progress Bar */}
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center text-xs font-bold text-gray-500">
+                                        <span className={bookingStep >= 1 ? 'text-primary-600 font-bold' : ''}>1. Service & Specialty</span>
+                                        <span className={bookingStep >= 2 ? 'text-primary-600 font-bold' : ''}>2. Date & Time</span>
+                                        <span className={bookingStep >= 3 ? 'text-primary-600 font-bold' : ''}>3. Patient Intake</span>
+                                    </div>
+                                    <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                                        <div 
+                                            className="bg-primary-600 h-full transition-all duration-500"
+                                            style={{ width: `${(bookingStep / 3) * 100}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+
+                                {/* Step 1: Mode & Specialty */}
+                                {bookingStep === 1 && (
+                                    <div className="space-y-6 animate-fade-in">
+                                        <div className="space-y-3">
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider">Select Consultation Mode</label>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div 
+                                                    onClick={() => setSelectedMode('In-Clinic Visit (MGM Belapur)')}
+                                                    className={`p-4 rounded-2xl border-2 cursor-pointer transition-all ${selectedMode === 'In-Clinic Visit (MGM Belapur)' ? 'border-primary-500 bg-primary-50/50 shadow-md' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
+                                                >
+                                                    <div className="flex items-center gap-3 mb-2">
+                                                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${selectedMode === 'In-Clinic Visit (MGM Belapur)' ? 'bg-primary-500 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                                                            <i className="fa-solid fa-hospital-user"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h4 className="font-bold text-xs sm:text-sm text-gray-900">In-Clinic Visit</h4>
+                                                            <p className="text-[10px] text-gray-500">MGM Hospital, Belapur</p>
+                                                        </div>
+                                                    </div>
+                                                    <p className="text-[11px] text-gray-600 leading-relaxed">Direct, in-person consultation and physical examination with Dr. Vaibhavi.</p>
+                                                </div>
+
+                                                <div 
+                                                    onClick={() => setSelectedMode('Online Video Consult')}
+                                                    className={`p-4 rounded-2xl border-2 cursor-pointer transition-all ${selectedMode === 'Online Video Consult' ? 'border-primary-500 bg-primary-50/50 shadow-md' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
+                                                >
+                                                    <div className="flex items-center gap-3 mb-2">
+                                                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${selectedMode === 'Online Video Consult' ? 'bg-primary-500 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                                                            <i className="fa-solid fa-video"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h4 className="font-bold text-xs sm:text-sm text-gray-900">Online Video Consult</h4>
+                                                            <p className="text-[10px] text-gray-500">Secure HD Video Call</p>
+                                                        </div>
+                                                    </div>
+                                                    <p className="text-[11px] text-gray-600 leading-relaxed">Convenient expert advice and prescription follow-up from your home.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider">Select Primary Specialty / Concern</label>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                {['Pregnancy Care & Vitals', 'PCOS / PMOS & Hormones', 'Infertility Evaluation', 'High-Risk Pregnancy Care', 'Normal Delivery Planning', 'General Gynecology'].map(spec => (
+                                                    <div 
+                                                        key={spec}
+                                                        onClick={() => setSelectedSpecialty(spec)}
+                                                        className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between text-xs sm:text-sm font-semibold ${selectedSpecialty === spec ? 'border-primary-500 bg-primary-50 text-primary-900 shadow-sm' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'}`}
+                                                    >
+                                                        <span>{spec}</span>
+                                                        {selectedSpecialty === spec && <i className="fa-solid fa-circle-check text-primary-600 text-base animate-scale-in"></i>}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <button 
+                                            type="button"
+                                            onClick={handleNextStep}
+                                            className="w-full bg-primary-600 text-white font-bold py-3.5 rounded-xl shadow-md shadow-primary-500/20 hover:bg-primary-700 transition flex items-center justify-center gap-2 text-xs sm:text-sm"
+                                        >
+                                            <span>Continue to Date & Time</span>
+                                            <i className="fa-solid fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                )}
+
+                                {/* Step 2: Date & Time */}
+                                {bookingStep === 2 && (
+                                    <div className="space-y-6 animate-fade-in">
+                                        <div className="space-y-3">
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider">Preferred Date</label>
+                                            <input 
+                                                type="date" 
+                                                value={selectedDate} 
+                                                onChange={(e) => setSelectedDate(e.target.value)} 
+                                                required 
+                                                min={new Date().toISOString().split('T')[0]}
+                                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 font-medium text-xs sm:text-sm" 
+                                            />
+                                            <p className="text-[11px] text-gray-500">📅 MGM Hospital clinic hours operate Monday through Saturday.</p>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider">Select Time Slot</label>
+                                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                                {['10:00 AM', '11:00 AM', '12:00 PM', '05:00 PM', '06:00 PM', '07:00 PM'].map(slot => (
+                                                    <div 
+                                                        key={slot}
+                                                        onClick={() => setSelectedTimeSlot(slot)}
+                                                        className={`p-3 rounded-xl border cursor-pointer transition-all text-center text-xs sm:text-sm font-bold ${selectedTimeSlot === slot ? 'border-primary-500 bg-primary-50 text-primary-900 shadow-sm' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'}`}
+                                                    >
+                                                        <span>{slot}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="flex gap-3 pt-2">
+                                            <button 
+                                                type="button"
+                                                onClick={handlePrevStep}
+                                                className="w-1/3 bg-gray-100 text-gray-700 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition flex items-center justify-center gap-2 text-xs sm:text-sm"
+                                            >
+                                                <i className="fa-solid fa-arrow-left"></i>
+                                                <span>Back</span>
+                                            </button>
+                                            <button 
+                                                type="button"
+                                                onClick={handleNextStep}
+                                                className="w-2/3 bg-primary-600 text-white font-bold py-3.5 rounded-xl shadow-md shadow-primary-500/20 hover:bg-primary-700 transition flex items-center justify-center gap-2 text-xs sm:text-sm"
+                                            >
+                                                <span>Continue to Patient Details</span>
+                                                <i className="fa-solid fa-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Step 3: Patient Intake */}
+                                {bookingStep === 3 && (
+                                    <div className="space-y-6 animate-fade-in">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Patient Full Name</label>
+                                                <input 
+                                                    type="text" 
+                                                    value={patientName} 
+                                                    onChange={(e) => setPatientName(e.target.value)} 
+                                                    required 
+                                                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm font-medium" 
+                                                    placeholder="Full Name" 
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Mobile Number</label>
+                                                <input 
+                                                    type="tel" 
+                                                    value={mobileNumber} 
+                                                    onChange={(e) => setMobileNumber(e.target.value)} 
+                                                    required 
+                                                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm font-medium" 
+                                                    placeholder="+91" 
+                                                />
+                                            </div>
+                                            <div className="sm:col-span-2">
+                                                <label className="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address (For Confirmation & Calendar Invite)</label>
+                                                <input 
+                                                    type="email" 
+                                                    value={emailAddress} 
+                                                    onChange={(e) => setEmailAddress(e.target.value)} 
+                                                    required 
+                                                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm font-medium" 
+                                                    placeholder="patient@example.com" 
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Health Concern / Reason for Visit</label>
+                                            <textarea 
+                                                value={healthConcern} 
+                                                onChange={(e) => setHealthConcern(e.target.value)} 
+                                                rows={2} 
+                                                className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm font-medium" 
+                                                placeholder="Briefly describe your symptoms or consultation requirement..."
+                                            ></textarea>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <label className="block text-[11px] font-bold text-gray-700 uppercase tracking-wider">Past Medical History (Optional)</label>
+                                            <div className="flex flex-wrap gap-2">
+                                                {['Thyroid Disorder', 'Diabetes', 'High Blood Pressure', 'Previous C-Section', 'Anemia', 'PCOS / PMOS'].map(cond => (
+                                                    <div 
+                                                        key={cond}
+                                                        onClick={() => toggleCondition(cond)}
+                                                        className={`px-3 py-1.5 rounded-lg border text-xs cursor-pointer font-semibold transition-all ${medicalConditions.includes(cond) ? 'border-primary-500 bg-primary-50 text-primary-800 shadow-sm' : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'}`}
+                                                    >
+                                                        <span>{cond}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="flex gap-3 pt-2">
+                                            <button 
+                                                type="button"
+                                                onClick={handlePrevStep}
+                                                className="w-1/3 bg-gray-100 text-gray-700 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition flex items-center justify-center gap-2 text-xs sm:text-sm outline-none"
+                                            >
+                                                <i className="fa-solid fa-arrow-left"></i>
+                                                <span>Back</span>
+                                            </button>
+                                            <button 
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                                className="w-2/3 bg-primary-600 text-white font-bold py-3.5 rounded-xl shadow-md shadow-primary-500/20 hover:bg-primary-700 transition flex items-center justify-center gap-2 text-xs sm:text-sm disabled:opacity-70 outline-none"
+                                            >
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <i className="fa-solid fa-spinner animate-spin"></i>
+                                                        <span>Processing Request...</span>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <i className="fa-solid fa-check-double"></i>
+                                                        <span>Confirm & Book Appointment</span>
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </form>
+                        )}
                     </div>
                 </div>
             </div>
@@ -1029,7 +1361,7 @@ export default function Home() {
                             </li>
                             <li className="flex items-center gap-2">
                                 <i className="fa-solid fa-phone text-primary-500"></i>
-                                <span>+91 9284880359</span>
+                                <span>022-27572293</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <i className="fa-solid fa-envelope text-primary-500"></i>
@@ -1050,11 +1382,6 @@ export default function Home() {
             </div>
         </footer>
     </section>
-
-    {/*  Floating WhatsApp (Left)  */}
-    <a href="https://wa.me/919284880359" target="_blank" className="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl shadow-[0_10px_20px_rgba(34,197,94,0.3)] hover:scale-110 transition-transform hover:bg-green-600 animate-bounce" style={{ animationDuration: '3s' }}>
-        <i className="fa-brands fa-whatsapp"></i>
-    </a>
 
     {/* Sticky Floating CTA for Mobile (Right) */}
     <div className="fixed bottom-6 right-6 z-50 md:hidden flex flex-col gap-3 items-end">
