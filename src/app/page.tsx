@@ -831,12 +831,12 @@ export default function Home() {
                             <i className="fa-solid fa-triangle-exclamation"></i>
                         </div>
                         <span className="text-[9px] font-bold text-amber-600 uppercase tracking-wider block mb-1">High-Risk Pregnancy</span>
-                        <a href="#community" className="block outline-none">
+                        <Link href="/high-risk-pregnancy" className="block outline-none">
                             <h4 className="font-bold text-xs sm:text-sm text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-2 leading-snug">Understanding High-Risk Pregnancy: Warning Signs & Care</h4>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-3 pt-2 border-t border-gray-100/60 flex items-center justify-between">
-                        <span className="text-gray-400 text-[10px] font-medium italic">Coming Soon</span>
+                        <Link href="/high-risk-pregnancy" className="text-amber-600 text-[10px] font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
                 </div>
 
@@ -847,12 +847,12 @@ export default function Home() {
                             <i className="fa-solid fa-bell"></i>
                         </div>
                         <span className="text-[9px] font-bold text-red-600 uppercase tracking-wider block mb-1">Pregnancy Warning</span>
-                        <a href="#community" className="block outline-none">
+                        <Link href="/pregnancy-warning-signs" className="block outline-none">
                             <h4 className="font-bold text-xs sm:text-sm text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">What are the warning signs during pregnancy that should never be ignored?</h4>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-3 pt-2 border-t border-gray-100/60 flex items-center justify-between">
-                        <span className="text-gray-400 text-[10px] font-medium italic">Coming Soon</span>
+                        <Link href="/pregnancy-warning-signs" className="text-red-600 text-[10px] font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
                 </div>
 
@@ -863,12 +863,12 @@ export default function Home() {
                             <i className="fa-solid fa-hospital-user"></i>
                         </div>
                         <span className="text-[9px] font-bold text-indigo-600 uppercase tracking-wider block mb-1">Labor & Delivery</span>
-                        <a href="#community" className="block outline-none">
+                        <Link href="/normal-delivery-vs-csection" className="block outline-none">
                             <h4 className="font-bold text-xs sm:text-sm text-gray-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">Normal Delivery vs C-Section: What Every Mother Should Know</h4>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-3 pt-2 border-t border-gray-100/60 flex items-center justify-between">
-                        <span className="text-gray-400 text-[10px] font-medium italic">Coming Soon</span>
+                        <Link href="/normal-delivery-vs-csection" className="text-indigo-600 text-[10px] font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
                 </div>
 
@@ -879,12 +879,12 @@ export default function Home() {
                             <i className="fa-solid fa-capsules"></i>
                         </div>
                         <span className="text-[9px] font-bold text-emerald-600 uppercase tracking-wider block mb-1">Supplements</span>
-                        <a href="#community" className="block outline-none">
+                        <Link href="/pregnancy-supplements" className="block outline-none">
                             <h4 className="font-bold text-xs sm:text-sm text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug">How important are pregnancy supplements like folic acid and iron?</h4>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-3 pt-2 border-t border-gray-100/60 flex items-center justify-between">
-                        <span className="text-gray-400 text-[10px] font-medium italic">Coming Soon</span>
+                        <Link href="/pregnancy-supplements" className="text-emerald-600 text-[10px] font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
                 </div>
             </div>
