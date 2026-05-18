@@ -799,12 +799,12 @@ export default function Home() {
                             <i className="fa-solid fa-vials"></i>
                         </div>
                         <span className="text-[9px] font-bold text-blue-600 uppercase tracking-wider block mb-1">Prenatal Care</span>
-                        <a href="#community" className="block outline-none">
+                        <Link href="/essential-prenatal-tests" className="block outline-none">
                             <h4 className="font-bold text-xs sm:text-sm text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug">Essential Prenatal Tests Every Mother Should Know About</h4>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-3 pt-2 border-t border-gray-100/60 flex items-center justify-between">
-                        <span className="text-gray-400 text-[10px] font-medium italic">Coming Soon</span>
+                        <Link href="/essential-prenatal-tests" className="text-blue-600 text-[10px] font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
                 </div>
 
@@ -815,12 +815,12 @@ export default function Home() {
                             <i className="fa-solid fa-chart-line"></i>
                         </div>
                         <span className="text-[9px] font-bold text-teal-600 uppercase tracking-wider block mb-1">Fetal Development</span>
-                        <a href="#community" className="block outline-none">
+                        <Link href="/baby-growth-pregnancy" className="block outline-none">
                             <h4 className="font-bold text-xs sm:text-sm text-gray-900 group-hover:text-teal-600 transition-colors line-clamp-2 leading-snug">Baby Growth Month-by-Month During Pregnancy</h4>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-3 pt-2 border-t border-gray-100/60 flex items-center justify-between">
-                        <span className="text-gray-400 text-[10px] font-medium italic">Coming Soon</span>
+                        <Link href="/baby-growth-pregnancy" className="text-teal-600 text-[10px] font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
                 </div>
 
