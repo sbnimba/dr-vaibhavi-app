@@ -19,7 +19,7 @@ export default function EssentialPrenatalTests() {
                     </Link>
 
                     <Link href="/#community" className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-blue-50 text-blue-700 font-bold text-xs sm:text-sm hover:bg-blue-100 transition shadow-sm border border-blue-100/50 outline-none">
-                        <i className="fa-solid fa-arrow-left text-xs"></i> Back to Home
+                        <i className="fa-solid fa-arrow-left text-xs"></i> Go back to Community & Health Tips
                     </Link>
                 </div>
             </header>

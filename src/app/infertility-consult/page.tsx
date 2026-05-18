@@ -19,7 +19,7 @@ export default function InfertilityConsult() {
                     </Link>
 
                     <Link href="/#community" className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-rose-50 text-rose-700 font-bold text-xs sm:text-sm hover:bg-rose-100 transition shadow-sm border border-rose-100/50 outline-none">
-                        <i className="fa-solid fa-arrow-left text-xs"></i> Back to Home
+                        <i className="fa-solid fa-arrow-left text-xs"></i> Go back to Community & Health Tips
                     </Link>
                 </div>
             </header>

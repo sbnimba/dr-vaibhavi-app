@@ -19,7 +19,7 @@ export default function NormalDeliveryVsCSection() {
                     </Link>
 
                     <Link href="/#community" className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-purple-50 text-purple-800 font-bold text-xs sm:text-sm hover:bg-purple-100 transition shadow-sm border border-purple-100/50 outline-none">
-                        <i className="fa-solid fa-arrow-left text-xs"></i> Back to Home
+                        <i className="fa-solid fa-arrow-left text-xs"></i> Go back to Community & Health Tips
                     </Link>
                 </div>
             </header>

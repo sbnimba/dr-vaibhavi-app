@@ -19,7 +19,7 @@ export default function HighRiskPregnancy() {
                     </Link>
 
                     <Link href="/#community" className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-amber-50 text-amber-800 font-bold text-xs sm:text-sm hover:bg-amber-100 transition shadow-sm border border-amber-100/50 outline-none">
-                        <i className="fa-solid fa-arrow-left text-xs"></i> Back to Home
+                        <i className="fa-solid fa-arrow-left text-xs"></i> Go back to Community & Health Tips
                     </Link>
                 </div>
             </header>

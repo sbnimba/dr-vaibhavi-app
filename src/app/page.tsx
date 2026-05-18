@@ -42,7 +42,26 @@ export default function Home() {
             }
         };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        // Handle hash navigation on mount and hash change
+        const handleHash = () => {
+            if (typeof window !== 'undefined' && window.location.hash) {
+                const id = window.location.hash.substring(1);
+                setTimeout(() => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 300);
+            }
+        };
+        handleHash();
+        window.addEventListener('hashchange', handleHash);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('hashchange', handleHash);
+        };
     }, []);
 
     const submitForm = (event: any) => {

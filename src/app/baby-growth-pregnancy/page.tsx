@@ -19,7 +19,7 @@ export default function BabyGrowthPregnancy() {
                     </Link>
 
                     <Link href="/#community" className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-teal-50 text-teal-700 font-bold text-xs sm:text-sm hover:bg-teal-100 transition shadow-sm border border-teal-100/50 outline-none">
-                        <i className="fa-solid fa-arrow-left text-xs"></i> Back to Home
+                        <i className="fa-solid fa-arrow-left text-xs"></i> Go back to Community & Health Tips
                     </Link>
                 </div>
             </header>
