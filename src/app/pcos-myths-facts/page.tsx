@@ -38,12 +38,12 @@ export default function PcosMythsFacts() {
                         </div>
 
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900 leading-[1.2] mb-6 tracking-normal">
-                            Understanding PCOS: <br className="hidden sm:inline" />
+                            Understanding PCOS <span className="text-purple-600 font-sans text-2xl sm:text-3xl lg:text-4xl font-normal">(now PMOS)</span>: <br className="hidden sm:inline" />
                             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Myths vs Facts</span>
                         </h1>
 
                         <p className="text-base sm:text-lg text-gray-700 font-sans font-medium mb-8 max-w-2xl mx-auto leading-relaxed">
-                            Breaking down common misconceptions about Polycystic Ovary Syndrome and empowering women with medical truth.
+                            Breaking down common misconceptions about Polycystic Ovary Syndrome—now officially transitioning to Polycystic Metabolic Ovary Syndrome (PMOS)—and empowering women with medical truth.
                         </p>
 
                         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-600 font-medium bg-white/80 backdrop-blur-sm py-3 px-6 rounded-full w-max mx-auto shadow-sm border border-white">
@@ -72,27 +72,54 @@ export default function PcosMythsFacts() {
                         <div className="relative rounded-[1.5rem] overflow-hidden aspect-[16/9] max-h-[450px] bg-gray-100">
                             <img 
                                 src="images/pcos_myths_facts.png" 
-                                alt="Understanding PCOS Myths vs Facts Holistic Health" 
+                                alt="Understanding PCOS PMOS Myths vs Facts Holistic Health" 
                                 className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700" 
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6 sm:p-8">
                                 <p className="text-white text-xs sm:text-sm font-medium backdrop-blur-md bg-black/30 py-2.5 px-5 rounded-2xl border border-white/20 shadow-lg">
-                                    💜 <strong>A holistic approach to PCOS:</strong> Balancing hormones through lifestyle, nutrition, stress management, and expert medical care.
+                                    💜 <strong>A holistic approach to PCOS / PMOS:</strong> Balancing hormones through lifestyle, nutrition, stress management, and expert medical care.
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     <div className="bg-white rounded-[2rem] p-6 sm:p-10 lg:p-12 shadow-sm border border-gray-100 space-y-12 text-gray-700 font-sans leading-relaxed text-sm sm:text-base">
+                        
+                        {/* 📢 Medical Naming Update Callout Box */}
+                        <div className="bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden border border-purple-700">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none -mr-10 -mt-10"></div>
+                            <div className="relative z-10 space-y-4">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider border border-white/20">
+                                    <i className="fa-solid fa-bullhorn text-pink-300"></i> Important Medical Update
+                                </div>
+                                <h2 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-wide">
+                                    Why PCOS is Now Called PMOS
+                                </h2>
+                                <p className="text-purple-100 text-xs sm:text-sm leading-relaxed font-medium">
+                                    In modern medical science and international consensus, the condition historically known as <strong>Polycystic Ovary Syndrome (PCOS)</strong> is officially transitioning to <strong>Polycystic Metabolic Ovary Syndrome (PMOS)</strong> (or Polycystic Morphology Ovary Syndrome).
+                                </p>
+                                <div className="bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/15 space-y-2 text-xs sm:text-sm text-purple-50">
+                                    <p className="m-0"><strong>Why the name change?</strong></p>
+                                    <ul className="space-y-1.5 list-disc list-inside text-purple-100">
+                                        <li>The old name (PCOS) focused heavily on "cysts"—which are actually harmless, normal egg follicles, not true ovarian cysts. This misleading name caused immense anxiety and led many women to believe surgery was needed.</li>
+                                        <li>The new name (<strong>PMOS</strong>) accurately highlights that this is a <strong>metabolic and hormonal condition</strong> affecting the entire body (insulin, metabolism, hormones), not just an isolated issue with the ovaries.</li>
+                                    </ul>
+                                </div>
+                                <p className="text-xs sm:text-sm text-pink-200 italic m-0 font-medium">
+                                    Throughout this guide and our clinic practice, we use both terms <strong>(PCOS / PMOS)</strong> to help you navigate this transition with absolute clarity and confidence.
+                                </p>
+                            </div>
+                        </div>
+
                         {/* Intro */}
                         <div className="prose max-w-none space-y-6">
                             <p className="text-lg sm:text-xl font-serif font-medium text-gray-800 leading-relaxed">
-                                Polycystic Ovary Syndrome (PCOS) is one of the most common hormonal conditions affecting women of reproductive age. Despite being so common, there are still many myths and misunderstandings surrounding PCOS.
+                                Polycystic Metabolic Ovary Syndrome (PMOS)—widely known as PCOS—is one of the most common hormonal and metabolic conditions affecting women of reproductive age. Despite being so common, there are still many myths and misunderstandings surrounding the condition.
                             </p>
 
                             <div className="bg-[#FAF9F6] border border-gray-200/60 rounded-2xl p-6 shadow-sm">
                                 <h3 className="font-serif font-bold text-gray-900 text-base sm:text-lg mb-3 flex items-center gap-2">
-                                    <i className="fa-solid fa-circle-info text-purple-600"></i> PCOS can affect multiple aspects of a woman's life:
+                                    <i className="fa-solid fa-circle-info text-purple-600"></i> PCOS / PMOS can affect multiple aspects of a woman's life:
                                 </h3>
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 font-medium text-xs sm:text-sm text-gray-800">
                                     <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex items-center gap-2">
@@ -117,18 +144,18 @@ export default function PcosMythsFacts() {
                             </div>
 
                             <p className="text-gray-600 font-medium">
-                                Early diagnosis and proper lifestyle management can help women live a healthy and balanced life with PCOS.
+                                Early diagnosis and proper lifestyle management can help women live a healthy and balanced life with PCOS (PMOS).
                             </p>
                         </div>
 
-                        {/* What is PCOS? */}
+                        {/* What is PCOS / PMOS? */}
                         <div className="border-t border-gray-100 pt-8">
                             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-4 flex items-center gap-3">
                                 <i className="fa-solid fa-notes-medical text-purple-600 text-xl sm:text-2xl"></i>
-                                What is PCOS?
+                                What is PCOS / PMOS?
                             </h2>
                             <p className="text-gray-600 mb-6 leading-relaxed">
-                                PCOS is a hormonal condition in which the ovaries may produce higher-than-normal levels of androgens (male hormones), leading to hormonal imbalance.
+                                PCOS (now PMOS) is a hormonal and metabolic condition in which the ovaries may produce higher-than-normal levels of androgens (male hormones), leading to hormonal imbalance and irregular ovulation.
                             </p>
 
                             <h3 className="font-bold text-sm sm:text-base text-gray-900 mb-4 uppercase tracking-wider text-purple-700">Common Symptoms Include:</h3>
@@ -165,7 +192,7 @@ export default function PcosMythsFacts() {
                             </div>
 
                             <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl text-xs sm:text-sm text-amber-900 font-medium">
-                                ⭐ <strong>Important Note:</strong> Not every woman experiences the same symptoms. PCOS presents uniquely in each individual.
+                                ⭐ <strong>Important Note:</strong> Not every woman experiences the same symptoms. PCOS (PMOS) presents uniquely in each individual.
                             </div>
                         </div>
 
@@ -173,7 +200,7 @@ export default function PcosMythsFacts() {
                         <div className="border-t border-gray-100 pt-8 space-y-8">
                             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-6 flex items-center gap-3">
                                 <i className="fa-solid fa-scale-balanced text-purple-600 text-xl sm:text-2xl"></i>
-                                Myth vs Fact About PCOS
+                                Myth vs Fact About PCOS / PMOS
                             </h2>
 
                             <div className="space-y-6">
@@ -183,16 +210,16 @@ export default function PcosMythsFacts() {
                                         <span className="w-8 h-8 rounded-full bg-rose-200 text-rose-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✕</span>
                                         <div>
                                             <span className="text-[10px] sm:text-xs font-bold text-rose-700 uppercase tracking-wider block mb-1">Myth 1</span>
-                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">PCOS Only Affects Overweight Women</h3>
+                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">PCOS / PMOS Only Affects Overweight Women</h3>
                                         </div>
                                     </div>
                                     <div className="bg-emerald-50/40 p-5 sm:p-6 flex items-start gap-4">
                                         <span className="w-8 h-8 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✓</span>
                                         <div className="space-y-3 w-full">
                                             <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Fact</span>
-                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">Even women with normal body weight can have PCOS.</p>
+                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">Even women with normal body weight can have PCOS (PMOS).</p>
                                             <p className="text-xs sm:text-sm text-gray-600 m-0 leading-relaxed">
-                                                While weight gain is common, many women with PCOS are lean (known as Lean PCOS) and still experience irregular periods, acne, hormonal imbalance, or fertility issues.
+                                                While weight gain is common, many women with PMOS are lean (known as Lean PCOS / PMOS) and still experience irregular periods, acne, hormonal imbalance, or fertility issues.
                                             </p>
                                         </div>
                                     </div>
@@ -204,14 +231,14 @@ export default function PcosMythsFacts() {
                                         <span className="w-8 h-8 rounded-full bg-rose-200 text-rose-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✕</span>
                                         <div>
                                             <span className="text-[10px] sm:text-xs font-bold text-rose-700 uppercase tracking-wider block mb-1">Myth 2</span>
-                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">PCOS Means You Can Never Get Pregnant</h3>
+                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">PCOS / PMOS Means You Can Never Get Pregnant</h3>
                                         </div>
                                     </div>
                                     <div className="bg-emerald-50/40 p-5 sm:p-6 flex items-start gap-4">
                                         <span className="w-8 h-8 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✓</span>
                                         <div className="space-y-3 w-full">
                                             <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Fact</span>
-                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">Many women with PCOS successfully conceive with proper treatment and lifestyle changes.</p>
+                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">Many women with PCOS (PMOS) successfully conceive with proper treatment and lifestyle changes.</p>
                                             <p className="text-xs sm:text-sm text-gray-600 m-0 leading-relaxed">
                                                 Early diagnosis, weight management, healthy eating, exercise, and customized medical guidance can improve fertility significantly.
                                             </p>
@@ -225,7 +252,7 @@ export default function PcosMythsFacts() {
                                         <span className="w-8 h-8 rounded-full bg-rose-200 text-rose-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✕</span>
                                         <div>
                                             <span className="text-[10px] sm:text-xs font-bold text-rose-700 uppercase tracking-wider block mb-1">Myth 3</span>
-                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">Irregular Periods are “Normal” in PCOS</h3>
+                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">Irregular Periods are “Normal” in PCOS / PMOS</h3>
                                         </div>
                                     </div>
                                     <div className="bg-emerald-50/40 p-5 sm:p-6 flex items-start gap-4">
@@ -246,16 +273,16 @@ export default function PcosMythsFacts() {
                                         <span className="w-8 h-8 rounded-full bg-rose-200 text-rose-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✕</span>
                                         <div>
                                             <span className="text-[10px] sm:text-xs font-bold text-rose-700 uppercase tracking-wider block mb-1">Myth 4</span>
-                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">PCOS is Only a Gynecological Problem</h3>
+                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">PCOS / PMOS is Only a Gynecological Problem</h3>
                                         </div>
                                     </div>
                                     <div className="bg-emerald-50/40 p-5 sm:p-6 flex items-start gap-4">
                                         <span className="w-8 h-8 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✓</span>
                                         <div className="space-y-3 w-full">
                                             <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Fact</span>
-                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">PCOS is also closely linked with metabolic and hormonal health.</p>
+                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">PCOS (PMOS) is also closely linked with metabolic and hormonal health.</p>
                                             <p className="text-xs sm:text-sm text-gray-600 m-0 leading-relaxed">
-                                                Women with PCOS may have a higher risk of insulin resistance, diabetes, high cholesterol, high blood pressure, as well as anxiety and stress. PCOS requires a holistic approach, not just period management.
+                                                Women with PMOS may have a higher risk of insulin resistance, diabetes, high cholesterol, high blood pressure, as well as anxiety and stress. PMOS requires a holistic metabolic approach, not just period management.
                                             </p>
                                         </div>
                                     </div>
@@ -267,14 +294,14 @@ export default function PcosMythsFacts() {
                                         <span className="w-8 h-8 rounded-full bg-rose-200 text-rose-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✕</span>
                                         <div>
                                             <span className="text-[10px] sm:text-xs font-bold text-rose-700 uppercase tracking-wider block mb-1">Myth 5</span>
-                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">Weight Loss Alone Can Cure PCOS</h3>
+                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">Weight Loss Alone Can Cure PCOS / PMOS</h3>
                                         </div>
                                     </div>
                                     <div className="bg-emerald-50/40 p-5 sm:p-6 flex items-start gap-4">
                                         <span className="w-8 h-8 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✓</span>
                                         <div className="space-y-3 w-full">
                                             <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Fact</span>
-                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">Weight management helps control symptoms, but PCOS is a long-term hormonal condition.</p>
+                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">Weight management helps control symptoms, but PMOS is a long-term hormonal condition.</p>
                                             <p className="text-xs sm:text-sm text-gray-600 m-0 leading-relaxed">
                                                 Effective treatment includes lifestyle modification, regular exercise, healthy nutrition, stress management, and customized medicines if required.
                                             </p>
@@ -288,16 +315,16 @@ export default function PcosMythsFacts() {
                                         <span className="w-8 h-8 rounded-full bg-rose-200 text-rose-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✕</span>
                                         <div>
                                             <span className="text-[10px] sm:text-xs font-bold text-rose-700 uppercase tracking-wider block mb-1">Myth 6</span>
-                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">Every Woman with PCOS Has Ovarian Cysts</h3>
+                                            <h3 className="font-serif font-bold text-rose-950 text-base sm:text-lg m-0">Every Woman with PCOS / PMOS Has Ovarian Cysts</h3>
                                         </div>
                                     </div>
                                     <div className="bg-emerald-50/40 p-5 sm:p-6 flex items-start gap-4">
                                         <span className="w-8 h-8 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold shrink-0 mt-0.5">✓</span>
                                         <div className="space-y-3 w-full">
                                             <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Fact</span>
-                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">Not all women with PCOS have visible cysts on ultrasound.</p>
+                                            <p className="text-gray-900 font-bold text-sm sm:text-base m-0">This exact misunderstanding is why the medical community is changing the name from PCOS to PMOS!</p>
                                             <p className="text-xs sm:text-sm text-gray-600 m-0 leading-relaxed">
-                                                A PCOS diagnosis depends on a combination of factors including symptoms, hormonal evaluation, menstrual history, and ultrasound findings.
+                                                Not all women with PMOS have visible cysts on ultrasound. The "cysts" are actually normal developing egg follicles that stalled due to hormonal imbalance. A PMOS diagnosis depends on a combination of symptoms, metabolic evaluation, menstrual history, and ultrasound findings.
                                             </p>
                                         </div>
                                     </div>
@@ -309,7 +336,7 @@ export default function PcosMythsFacts() {
                         <div className="border-t border-gray-100 pt-8 space-y-8">
                             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-6 flex items-center gap-3">
                                 <i className="fa-solid fa-heart-pulse text-purple-600 text-xl sm:text-2xl"></i>
-                                Healthy Lifestyle Tips for PCOS
+                                Healthy Lifestyle Tips for PCOS / PMOS
                             </h2>
 
                             {/* Diet Split */}
@@ -363,7 +390,7 @@ export default function PcosMythsFacts() {
                                             <i className="fa-solid fa-spa text-purple-600"></i> Manage Stress
                                         </h3>
                                         <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
-                                            High stress increases cortisol levels, which can worsen hormonal imbalances and PCOS symptoms. Prioritizing mental peace is essential.
+                                            High stress increases cortisol levels, which can worsen hormonal imbalances and PMOS symptoms. Prioritizing mental peace is essential.
                                         </p>
                                     </div>
                                     <div className="bg-white p-4 rounded-xl border border-gray-200/50">
@@ -418,10 +445,10 @@ export default function PcosMythsFacts() {
                         <div className="border-t border-gray-100 pt-8 space-y-4">
                             <h3 className="text-xl font-serif font-bold text-gray-900">Final Words</h3>
                             <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                                PCOS is common, manageable, and treatable. The biggest challenge is often misinformation and delayed diagnosis. Understanding the difference between myths and facts can help women take better care of their reproductive and overall health.
+                                PCOS (PMOS) is common, manageable, and treatable. The biggest challenge is often misinformation and delayed diagnosis. Understanding the difference between myths and facts can help women take better care of their reproductive and overall metabolic health.
                             </p>
                             <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                                With the right lifestyle changes, medical guidance, and regular follow-up, women with PCOS can lead healthy and fulfilling lives.
+                                With the right lifestyle changes, medical guidance, and regular follow-up, women with PMOS can lead healthy and fulfilling lives.
                             </p>
 
                             <div className="bg-purple-50 border-l-4 border-purple-500 p-5 rounded-r-2xl mt-6 text-xs sm:text-sm text-purple-900 font-medium">
@@ -440,9 +467,9 @@ export default function PcosMythsFacts() {
                             </div>
 
                             <div>
-                                <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-900 mb-1">Struggling with PCOS or Irregular Periods?</h3>
+                                <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-900 mb-1">Struggling with PCOS / PMOS or Irregular Periods?</h3>
                                 <p className="text-xs sm:text-sm text-gray-600 max-w-lg mx-auto leading-relaxed">
-                                    Consult Dr. Vaibhavi Dhenge for an advanced hormonal evaluation, accurate ultrasound diagnosis, and a customized, holistic PCOS management plan.
+                                    Consult Dr. Vaibhavi Dhenge for an advanced hormonal evaluation, accurate ultrasound diagnosis, and a customized, holistic PMOS management plan.
                                 </p>
                             </div>
 

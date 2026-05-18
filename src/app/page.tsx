@@ -580,8 +580,8 @@ export default function Home() {
                     <div className="w-10 h-10 rounded-xl bg-brand-teal/30 text-teal-600 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform">
                         <i className="fa-solid fa-dna"></i>
                     </div>
-                    <h4 className="text-base font-bold font-serif text-gray-900 mb-1">PCOS Treatment</h4>
-                    <p className="text-[11px] text-gray-600">Holistic medical and lifestyle management for PCOS and hormonal imbalances.</p>
+                    <h4 className="text-base font-bold font-serif text-gray-900 mb-1">PCOS (PMOS) Treatment</h4>
+                    <p className="text-[11px] text-gray-600">Holistic medical and lifestyle management for PCOS (now PMOS) and hormonal imbalances.</p>
                 </div>
 
                 <div className="bg-white p-5 rounded-2xl shadow-sm hover:shadow-premium transition-all duration-300 border border-gray-100 group" data-aos="fade-up" data-aos-delay="400">
@@ -647,9 +647,9 @@ export default function Home() {
                     </div>
                     <div className="swiper-slide bg-[#FAF9F6] p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100">
                         <div className="flex text-yellow-400 mb-3 text-sm"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></div>
-                        <p className="text-gray-700 italic leading-relaxed mb-4 text-xs sm:text-sm">"I was struggling with PCOS and irregular periods for years. Her structured treatment and lifestyle guidance changed everything for me. Highly recommended."</p>
+                        <p className="text-gray-700 italic leading-relaxed mb-4 text-xs sm:text-sm">"I was struggling with PCOS (PMOS) and irregular periods for years. Her structured treatment and lifestyle guidance changed everything for me. Highly recommended."</p>
                         <h4 className="font-bold text-gray-900 text-sm sm:text-base">- Anjali Deshmukh</h4>
-                        <p className="text-[11px] text-gray-500">PCOS Patient</p>
+                        <p className="text-[11px] text-gray-500">PCOS / PMOS Patient</p>
                     </div>
                     <div className="swiper-slide bg-[#FAF9F6] p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100">
                         <div className="flex text-yellow-400 mb-3 text-sm"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></div>
@@ -682,10 +682,10 @@ export default function Home() {
                 </details>
                 <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        Can PCOS be completely cured?
+                        Can PCOS (now PMOS) be completely cured?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">While PCOS cannot be completely cured, it can be effectively managed with lifestyle modifications, diet, and customized medical treatments to regulate hormones and cycles.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">While PCOS (Polycystic Metabolic Ovary Syndrome / PMOS) cannot be completely cured, it can be effectively managed with lifestyle modifications, diet, and customized medical treatments to regulate hormones and cycles.</p>
                 </details>
                 <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
@@ -699,7 +699,7 @@ export default function Home() {
                         Is it normal to have irregular periods?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Occasional irregularity can happen due to stress or diet changes. However, if your periods are consistently irregular, it could indicate hormonal imbalances like PCOS or thyroid issues, which require a consultation.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Occasional irregularity can happen due to stress or diet changes. However, if your periods are consistently irregular, it could indicate hormonal imbalances like PCOS (PMOS) or thyroid issues, which require a consultation.</p>
                 </details>
                 <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
@@ -747,7 +747,7 @@ export default function Home() {
                     <div className="p-5">
                         <span className="text-[10px] font-bold text-purple-600 uppercase tracking-widest">Women's Health</span>
                         <Link href="/pcos-myths-facts" className="block outline-none group">
-                            <h4 className="font-bold text-sm sm:text-base mt-1.5 mb-2 text-gray-900 group-hover:text-purple-600 transition-colors">Understanding PCOS: Myths vs Facts</h4>
+                            <h4 className="font-bold text-sm sm:text-base mt-1.5 mb-2 text-gray-900 group-hover:text-purple-600 transition-colors">Understanding PCOS (now PMOS): Myths vs Facts</h4>
                         </Link>
                         <Link href="/pcos-myths-facts" className="text-primary-600 text-xs font-bold flex items-center gap-1 hover:underline outline-none">Read More &rarr;</Link>
                     </div>
@@ -822,7 +822,7 @@ export default function Home() {
                             </div>
                             <div>
                                 <label className="block text-[11px] font-semibold text-gray-700 mb-1">Health Concern (Optional)</label>
-                                <textarea name="Health_Concern" rows={2} className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm" placeholder="e.g. Pregnancy checkup, PCOS query..."></textarea>
+                                <textarea name="Health_Concern" rows={2} className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-xs sm:text-sm" placeholder="e.g. Pregnancy checkup, PCOS / PMOS query..."></textarea>
                             </div>
                             <button type="submit" className="w-full bg-primary-600 text-white font-bold py-3 rounded-xl shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:-translate-y-0.5 transition transform duration-300 text-xs sm:text-sm">
                                 Request Appointment
