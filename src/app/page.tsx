@@ -126,10 +126,44 @@ export default function Home() {
         }
     };
 
-    // Helper for sending real emails using EmailJS REST API
+    // Helper for sending real emails using FormSubmit (zero-config) & EmailJS
     const sendEmailAlert = async (type: 'new_booking' | 'status_update', data: any) => {
         if (typeof window === 'undefined') return false;
-        
+
+        // 1. Send new booking alert to Doctor via FormSubmit (Zero-config, works out of the box!)
+        if (type === 'new_booking') {
+            try {
+                await fetch('https://formsubmit.co/ajax/IndiasBestGynaecologist@gmail.com', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `New Booking Request: ${data.patientName} (${data.id})`,
+                        _replyto: data.emailAddress,
+                        _captcha: "false",
+                        _template: "box",
+                        "Reference ID": data.id,
+                        "Patient Name": data.patientName,
+                        "Mobile Number": data.mobileNumber,
+                        "Email Address": data.emailAddress,
+                        "Consultation Mode": data.consultationMode,
+                        "Specialty": data.specialty,
+                        "Appointment Date": data.date,
+                        "Appointment Time": data.timeSlot,
+                        "Health Concern": data.healthConcern || 'None',
+                        "Medical History": data.medicalHistory ? data.medicalHistory.join(', ') : 'None',
+                        "Status": data.status
+                    })
+                });
+                console.log('[FormSubmit] Booking notification sent to doctor.');
+            } catch (err) {
+                console.error('[FormSubmit] Booking notification failed:', err);
+            }
+        }
+
+        // 2. Secondary/Patient notifications using custom EmailJS templates (if configured)
         const serviceId = localStorage.getItem('dr_vaibhavi_emailjs_service_id');
         const templateId = type === 'new_booking' 
             ? localStorage.getItem('dr_vaibhavi_emailjs_template_booking')
@@ -137,8 +171,8 @@ export default function Home() {
         const publicKey = localStorage.getItem('dr_vaibhavi_emailjs_public_key');
 
         if (!serviceId || !templateId || !publicKey) {
-            console.log('[EmailJS] Credentials not configured. Simulated dispatch only.');
-            return false;
+            console.log('[EmailJS] Credentials not configured. Skipping EmailJS dispatch.');
+            return true;
         }
 
         try {

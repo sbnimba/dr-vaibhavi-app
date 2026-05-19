@@ -323,6 +323,41 @@ export default function AdminDashboard() {
         }
     };
 
+    const getGmailComposeLink = (app: Appointment) => {
+        const subject = `Appointment ${app.status} - Dr. Vaibhavi Dhenge Clinic [${app.id}]`;
+        let body = `Dear ${app.patientName},\n\n`;
+        
+        if (app.status === 'Confirmed') {
+            body += `We are pleased to inform you that your appointment request has been CONFIRMED.\n\n`;
+        } else if (app.status === 'Rescheduled') {
+            body += `Your appointment has been RESCHEDULED.\n\n`;
+        } else if (app.status === 'Rejected') {
+            body += `We regret to inform you that your appointment request could not be accepted at this time.\n\n`;
+        } else {
+            body += `This is an update regarding your appointment request.\n\n`;
+        }
+
+        body += `Appointment Details:\n`;
+        body += `- Reference ID: ${app.id}\n`;
+        body += `- Date: ${app.date}\n`;
+        body += `- Time Slot: ${app.timeSlot}\n`;
+        body += `- Consultation Mode: ${app.consultationMode}\n`;
+        body += `- Specialty: ${app.specialty}\n`;
+        
+        if (app.rescheduleNote) {
+            body += `- Note: ${app.rescheduleNote}\n`;
+        } else if (app.rejectNote) {
+            body += `- Note: ${app.rejectNote}\n`;
+        }
+
+        body += `\nShould you need to change your appointment or have any questions, please contact us at +91 91361 68582 / +91 85912 37628.\n\n`;
+        body += `Best regards,\n`;
+        body += `Dr. Vaibhavi Dhenge Clinic Team\n`;
+        body += `MGM Hospital, Vashi / Belapur`;
+
+        return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(app.emailAddress)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    };
+
     const handleAccept = (id: string) => {
         updateAppointmentInStore(id, 'Confirmed', {}, 'status_update', 'Your appointment has been confirmed! We look forward to seeing you.');
         showToast(`Appointment confirmed & status email scheduled to dispatch.`);
@@ -752,9 +787,11 @@ export default function AdminDashboard() {
                                                 <i className="fa-solid fa-phone"></i>
                                             </a>
                                             <a 
-                                                href={`mailto:${app.emailAddress}?subject=Dr. Vaibhavi Dhenge - Appointment Update (${app.id})`} 
-                                                className="bg-gray-100 text-gray-700 w-9 h-9 rounded-xl flex items-center justify-center hover:bg-gray-200 transition text-sm"
-                                                title="Email Patient"
+                                                href={getGmailComposeLink(app)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-primary-50 text-primary-600 border border-primary-100 w-9 h-9 rounded-xl flex items-center justify-center hover:bg-primary-100 transition text-sm"
+                                                title="Compose Pre-filled Gmail Confirmation"
                                             >
                                                 <i className="fa-solid fa-envelope"></i>
                                             </a>
