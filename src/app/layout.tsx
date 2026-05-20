@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      translate="no"
       className={`${plusJakartaSans.variable} ${lora.variable} scroll-smooth snap-y snap-mandatory antialiased`}
     >
       <head>
