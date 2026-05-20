@@ -954,68 +954,109 @@ export default function Home() {
             </div>
             
             <div className="space-y-3" data-aos="fade-up" data-aos-delay="200">
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        When should I have my first pregnancy checkup?
+                        1. How do I book an appointment?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">You should schedule your first antenatal visit as soon as you get a positive home pregnancy test, typically around 6 to 8 weeks after your last menstrual period.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">You can book either an in-clinic visit or a video consultation directly through our website. Simply choose your preferred consultation type, select a suitable time slot, and confirm your booking.</p>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        Can PCOS (now PMOS) be completely cured?
+                        2. What is the difference between a clinic visit and a video consultation?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">While PCOS (Polycystic Metabolic Ovary Syndrome / PMOS) cannot be completely cured, it can be effectively managed with lifestyle modifications, diet, and customized medical treatments to regulate hormones and cycles.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Clinic visits are ideal for physical examinations, scans, procedures, and detailed evaluations. Video consultations are convenient for follow-ups, pregnancy guidance, reports discussion, PCOS management, menstrual concerns, and general medical advice.</p>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        Do you offer online video consultations?
+                        3. Is video consultation safe and confidential?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Yes, we offer secure online video consultations for initial discussions, follow-ups, reports analysis, and second opinions.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Yes. All consultations are completely private and confidential. Your medical information and discussions are securely handled with professional confidentiality.</p>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        Is it normal to have irregular periods?
+                        4. What health concerns can be discussed during an online consultation?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Occasional irregularity can happen due to stress or diet changes. However, if your periods are consistently irregular, it could indicate hormonal imbalances like PCOS (PMOS) or thyroid issues, which require a consultation.</p>
+                    <div className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">
+                        You can consult for:
+                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                            <li>Pregnancy guidance & nutrition</li>
+                            <li>PCOS/PCOD & irregular periods</li>
+                            <li>Fertility & birth control advice</li>
+                            <li>Reports review & follow-ups</li>
+                            <li>Menopause & infection-related symptoms</li>
+                        </ul>
+                    </div>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        When should couples consult for infertility?
+                        5. When should I choose an in-clinic appointment instead of an online consultation?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">If you are under 35 and have been trying to conceive for a year without success, or over 35 and trying for six months, it is highly recommended to consult an expert for a fertility evaluation.</p>
+                    <div className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">
+                        An in-clinic visit is recommended if you need:
+                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                            <li>Physical examination or procedures</li>
+                            <li>Ultrasound/scans</li>
+                            <li>Blood pressure or fetal monitoring</li>
+                            <li>Severe pain or emergency evaluation</li>
+                        </ul>
+                    </div>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        What should I bring to my first appointment?
+                        6. What should I keep ready before a video consultation?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Please bring any previous medical records, recent ultrasound reports, blood test results, and a list of your current medications or symptoms.</p>
+                    <div className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">
+                        Please keep the following ready:
+                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                            <li>Previous prescriptions or reports</li>
+                            <li>List of current symptoms & medication details</li>
+                            <li>Internet connection and a quiet environment</li>
+                            <li>Notebook for doctor instructions</li>
+                        </ul>
+                    </div>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        How can I book an appointment with Dr. Vaibhavi?
+                        7. Can I consult during pregnancy through video consultation?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">You can book an appointment instantly through this website by clicking the "Book Appointment" button. You can choose to connect via WhatsApp or schedule directly on Google Calendar.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Yes. Many pregnancy-related concerns and follow-up discussions can be handled online. However, certain routine checkups and scans may still require clinic visits depending on your pregnancy stage.</p>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        What should I do in a medical emergency?
+                        8. Do I need to create an account before booking?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">If you experience severe pain, heavy bleeding, or a pregnancy emergency during off-hours, please head directly to the Emergency Department at MGM Belapur Hospital, where Dr. Vaibhavi or the on-call OBGYN team will assist you immediately.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">No complicated signup is required. You can quickly book your appointment using basic details like your name, phone number, and preferred consultation type.</p>
                 </details>
-                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
                     <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
-                        Are my medical records kept confidential?
+                        9. What happens if I miss my appointment?
                         <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
                     </summary>
-                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Absolutely. We follow strict patient confidentiality and privacy protocols. Your medical history, treatments, and consultations are 100% private and secure.</p>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">If you miss your appointment, you may contact our support team or clinic reception to reschedule based on slot availability.</p>
+                </details>
+                
+                <details name="faq" className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                    <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
+                        10. How will I receive prescriptions after an online consultation?
+                        <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
+                    </summary>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">After your consultation, the doctor can share your prescription and medical advice digitally through WhatsApp, email, or the patient portal.</p>
                 </details>
             </div>
         </div>
