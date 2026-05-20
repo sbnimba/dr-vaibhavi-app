@@ -989,6 +989,34 @@ export default function Home() {
                     </summary>
                     <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">If you are under 35 and have been trying to conceive for a year without success, or over 35 and trying for six months, it is highly recommended to consult an expert for a fertility evaluation.</p>
                 </details>
+                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                    <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
+                        What should I bring to my first appointment?
+                        <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
+                    </summary>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Please bring any previous medical records, recent ultrasound reports, blood test results, and a list of your current medications or symptoms.</p>
+                </details>
+                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                    <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
+                        How can I book an appointment with Dr. Vaibhavi?
+                        <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
+                    </summary>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">You can book an appointment instantly through this website by clicking the "Book Appointment" button. You can choose to connect via WhatsApp or schedule directly on Google Calendar.</p>
+                </details>
+                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                    <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
+                        What should I do in a medical emergency?
+                        <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
+                    </summary>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">If you experience severe pain, heavy bleeding, or a pregnancy emergency during off-hours, please head directly to the Emergency Department at MGM Belapur Hospital, where Dr. Vaibhavi or the on-call OBGYN team will assist you immediately.</p>
+                </details>
+                <details className="group bg-white rounded-2xl p-4 cursor-pointer border border-gray-100 shadow-sm">
+                    <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-gray-900">
+                        Are my medical records kept confidential?
+                        <span className="transition group-open:rotate-180"><i className="fa-solid fa-chevron-down text-primary-500 text-xs"></i></span>
+                    </summary>
+                    <p className="text-gray-600 mt-2 text-xs sm:text-sm leading-relaxed">Absolutely. We follow strict patient confidentiality and privacy protocols. Your medical history, treatments, and consultations are 100% private and secure.</p>
+                </details>
             </div>
         </div>
     </section>
