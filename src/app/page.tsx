@@ -5,72 +5,9 @@ import AOS from 'aos';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
-// ─── Built-in Translation Dictionary ────────────────────────────────────────
-type LangKey = 'en' | 'hi' | 'mr' | 'gu' | 'ta' | 'te' | 'bn';
-const translations: Record<LangKey, Record<string, string>> = {
-  en: {
-    nav_home: 'HOME', nav_about: 'ABOUT', nav_services: 'SERVICES', nav_specialties: 'SPECIALTIES',
-    nav_testimonials: 'TESTIMONIALS', nav_gallery: 'GALLERY', nav_contact: 'CONTACT US',
-    nav_book: 'Book Appointment', hero_tagline: "Women's Health, Expert Care",
-    hero_subtitle: 'Compassionate gynaecological care for every stage of a woman\'s life.',
-    book_appt: 'Book Appointment', call_now: 'Call Now',
-    lang_label: 'Language',
-  },
-  hi: {
-    nav_home: 'होम', nav_about: 'हमारे बारे में', nav_services: 'सेवाएं', nav_specialties: 'विशेषताएं',
-    nav_testimonials: 'प्रशंसापत्र', nav_gallery: 'गैलरी', nav_contact: 'संपर्क करें',
-    nav_book: 'अपॉइंटमेंट बुक करें', hero_tagline: 'महिला स्वास्थ्य, विशेषज्ञ देखभाल',
-    hero_subtitle: 'महिला के जीवन के हर चरण के लिए सहानुभूतिपूर्ण स्त्री रोग देखभाल।',
-    book_appt: 'अपॉइंटमेंट बुक करें', call_now: 'अभी कॉल करें',
-    lang_label: 'भाषा',
-  },
-  mr: {
-    nav_home: 'मुख्यपृष्ठ', nav_about: 'आमच्याबद्दल', nav_services: 'सेवा', nav_specialties: 'विशेषता',
-    nav_testimonials: 'प्रशंसापत्रे', nav_gallery: 'गॅलरी', nav_contact: 'संपर्क करा',
-    nav_book: 'भेट बुक करा', hero_tagline: 'महिला आरोग्य, तज्ज्ञ काळजी',
-    hero_subtitle: 'महिलेच्या जीवनाच्या प्रत्येक टप्प्यासाठी सहानुभूतीपूर्ण स्त्रीरोग काळजी.',
-    book_appt: 'भेट बुक करा', call_now: 'आत्ता कॉल करा',
-    lang_label: 'भाषा',
-  },
-  gu: {
-    nav_home: 'હોમ', nav_about: 'અમારા વિશે', nav_services: 'સેવાઓ', nav_specialties: 'વિશેષતાઓ',
-    nav_testimonials: 'પ્રશંસાપત્ર', nav_gallery: 'ગૅલૅરી', nav_contact: 'અમારો સંપર્ક કરો',
-    nav_book: 'એપોઇન્ટમેન્ટ બુક કરો', hero_tagline: 'મહિલા સ્વાસ્થ્ય, નિષ્ણાત સંભાળ',
-    hero_subtitle: 'સ્ત્રીના જીવનના દરેક તબક્કા માટે સહાનુભૂતિ સ્ત્રીરોગ સંભાળ.',
-    book_appt: 'એપોઇન્ટમેન્ટ બુક કરો', call_now: 'હવે કૉલ કરો',
-    lang_label: 'ભાષા',
-  },
-  ta: {
-    nav_home: 'முகப்பு', nav_about: 'எங்களை பற்றி', nav_services: 'சேவைகள்', nav_specialties: 'சிறப்பியல்புகள்',
-    nav_testimonials: 'சான்றுகள்', nav_gallery: 'தொகுப்பு', nav_contact: 'தொடர்பு கொள்ள',
-    nav_book: 'சந்திப்பு பதிவு', hero_tagline: 'பெண்கள் ஆரோக்கியம், நிபுணர் அக்கறை',
-    hero_subtitle: 'ஒரு பெண்ணின் வாழ்வின் ஒவ்வொரு கட்டத்திற்கும் அனுதாப மகப்பேறு மருத்துவ சேவை.',
-    book_appt: 'சந்திப்பு பதிவு', call_now: 'இப்போது அழைக்கவும்',
-    lang_label: 'மொழி',
-  },
-  te: {
-    nav_home: 'హోమ్', nav_about: 'మా గురించి', nav_services: 'సేవలు', nav_specialties: 'ప్రత్యేకతలు',
-    nav_testimonials: 'సాక్ష్యాలు', nav_gallery: 'గ్యాలరీ', nav_contact: 'సంప్రదించండి',
-    nav_book: 'అపాయింట్మెంట్ బుక్ చేయండి', hero_tagline: 'మహిళా ఆరోగ్యం, నిపుణుల సంరక్షణ',
-    hero_subtitle: 'స్త్రీ జీవితంలోని ప్రతి దశకూ సానుభూతిగల స్త్రీ వైద్య సంరక్షణ.',
-    book_appt: 'అపాయింట్మెంట్ బుక్ చేయండి', call_now: 'ఇప్పుడు కాల్ చేయండి',
-    lang_label: 'భాష',
-  },
-  bn: {
-    nav_home: 'হোম', nav_about: 'আমাদের সম্পর্কে', nav_services: 'পরিষেবা', nav_specialties: 'বিশেষত্ব',
-    nav_testimonials: 'প্রশংসাপত্র', nav_gallery: 'গ্যালারি', nav_contact: 'যোগাযোগ করুন',
-    nav_book: 'অ্যাপয়েন্টমেন্ট বুক করুন', hero_tagline: 'নারী স্বাস্থ্য, বিশেষজ্ঞ যত্ন',
-    hero_subtitle: 'একজন মহিলার জীবনের প্রতিটি পর্যায়ে সহানুভূতিশীল স্ত্রীরোগ পরিষেবা।',
-    book_appt: 'অ্যাপয়েন্টমেন্ট বুক করুন', call_now: 'এখনই কল করুন',
-    lang_label: 'ভাষা',
-  },
-};
-// ─────────────────────────────────────────────────────────────────────────────
-
 export default function Home() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [currentLang, setCurrentLang] = useState<LangKey>('en');
-    const t = (key: string) => translations[currentLang]?.[key] ?? translations['en'][key] ?? key;
+    const [currentLang, setCurrentLang] = useState('en');
 
     useEffect(() => {
         // Initialize AOS with mirror and once: false for soft entering/leaving animations
@@ -393,6 +330,7 @@ export default function Home() {
     };
 
     const changeLanguage = (langCode: string) => {
+        setCurrentLang(langCode);
         if (langCode === 'en') {
             // Reset to English
             const iframe = document.querySelector('.goog-te-banner-frame') as HTMLIFrameElement;
@@ -435,12 +373,12 @@ export default function Home() {
             {/*  Desktop Nav  */}
             <nav className="hidden lg:flex items-center space-x-3 xl:space-x-5">
                 {/* 1. HOME */}
-                <a href="#home" className="text-[11px] xl:text-xs font-bold text-primary-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">{t('nav_home')}</a>
+                <a href="#home" className="text-[11px] xl:text-xs font-bold text-primary-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">HOME</a>
 
                 {/* 2. ABOUT */}
                 <div className="relative group py-2 shrink-0">
                     <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer whitespace-nowrap">
-                        {t('nav_about')} <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
+                        ABOUT <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
                     <div className="absolute top-full -left-4 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[500px] grid-cols-2 gap-6 animate-fade-in">
@@ -468,7 +406,7 @@ export default function Home() {
                 {/* 3. SERVICES (Mega Menu) */}
                 <div className="relative group py-2 shrink-0">
                     <button className="text-[11px] xl:text-xs font-bold text-gray-700 group-hover:text-primary-600 transition tracking-wider flex items-center gap-1 outline-none cursor-pointer whitespace-nowrap">
-                        {t('nav_services')} <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
+                        SERVICES <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Mega Dropdown */}
                     <div className="absolute top-full -left-32 bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl p-8 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[750px] grid-cols-3 gap-8 animate-fade-in">
@@ -583,10 +521,10 @@ export default function Home() {
                 </div>
 
                 {/* 6. TESTIMONIALS */}
-                <a href="#testimonials" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">{t('nav_testimonials')}</a>
+                <a href="#testimonials" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">TESTIMONIALS</a>
 
                 {/* 7. CONTACT US */}
-                <a href="#appointment" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">{t('nav_contact')}</a>
+                <a href="#appointment" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">CONTACT US</a>
                 
                 {/*  Language Toggle with Blinking Arrow  */}
                 <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-full shadow-sm border border-gray-100 relative group cursor-pointer shrink-0 whitespace-nowrap">
