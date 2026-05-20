@@ -524,24 +524,7 @@ export default function AdminDashboard() {
 
             {/* Main Content Area */}
             <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Warning for unconfigured setup */}
-                {(!sbUrl || !sbKey || !emailServiceId) && (
-                    <div className="mb-6 p-4 bg-amber-50 border border-amber-200 text-amber-900 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-in">
-                        <div className="flex items-start gap-2.5">
-                            <i className="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5"></i>
-                            <div>
-                                <p className="font-bold">System Integration Pending</p>
-                                <p className="text-[11px] text-amber-700 mt-0.5">To sync live patient bookings and send real confirmation emails, configure Supabase and EmailJS inside the Settings tab.</p>
-                            </div>
-                        </div>
-                        <button 
-                            onClick={() => setActiveTab('Settings')}
-                            className="bg-amber-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-amber-700 transition w-fit shrink-0"
-                        >
-                            Go to Settings
-                        </button>
-                    </div>
-                )}
+                {/* Simplified setup: using KVDB as primary and manual Gmail draft as fallback. */}
 
                 {/* Dashboard Metrics Header */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
@@ -584,7 +567,7 @@ export default function AdminDashboard() {
 
                 {/* Tab Navigation */}
                 <div className="bg-white p-2 rounded-2xl border border-gray-100 shadow-sm flex flex-wrap gap-2 mb-6 max-w-lg">
-                    {(['Pending', 'Confirmed', 'Completed', 'Settings'] as const).map(tab => (
+                    {(['Pending', 'Confirmed', 'Completed'] as const).map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -593,109 +576,13 @@ export default function AdminDashboard() {
                             {tab === 'Pending' && <i className="fa-solid fa-hourglass-half"></i>}
                             {tab === 'Confirmed' && <i className="fa-solid fa-circle-check"></i>}
                             {tab === 'Completed' && <i className="fa-solid fa-folder-closed"></i>}
-                            {tab === 'Settings' && <i className="fa-solid fa-gears"></i>}
                             <span>{tab}</span>
                         </button>
                     ))}
                 </div>
 
-                {/* Settings View */}
-                {activeTab === 'Settings' && (
-                    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm space-y-8 animate-fade-in">
-                        <div>
-                            <h3 className="text-lg font-serif font-bold text-gray-900">System Integration Settings</h3>
-                            <p className="text-xs text-gray-500 mt-1">Configure your live database and email notification providers here. Settings are securely cached in this browser.</p>
-                        </div>
-
-                        <form onSubmit={saveSettings} className="space-y-6">
-                            {/* Supabase Config */}
-                            <div className="space-y-4">
-                                <h4 className="text-xs font-bold text-primary-600 uppercase tracking-widest border-b border-gray-100 pb-2">1. Supabase Database Integration</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Supabase Project URL</label>
-                                        <input type="text" value={sbUrl} onChange={e => setSbUrl(e.target.value)} placeholder="https://xxxx.supabase.co" className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 outline-none text-xs" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Supabase Anon Key</label>
-                                        <input type="password" value={sbKey} onChange={e => setSbKey(e.target.value)} placeholder="eyJhbGciOi..." className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 outline-none text-xs" />
-                                    </div>
-                                </div>
-
-                                <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
-                                    <p className="text-xs font-bold text-gray-800">📋 SQL Schema Setup Instructions:</p>
-                                    <p className="text-[11px] text-gray-600 leading-relaxed">
-                                        Inside your Supabase dashboard, open the <strong>SQL Editor</strong>, paste the following script, and click <strong>Run</strong> to initialize your table:
-                                    </p>
-                                    <pre className="bg-gray-900 text-emerald-400 p-3 rounded-xl text-[10px] font-mono overflow-x-auto block">
-{`CREATE TABLE appointments (
-  id TEXT PRIMARY KEY,
-  patient_name TEXT NOT NULL,
-  mobile_number TEXT NOT NULL,
-  email_address TEXT NOT NULL,
-  consultation_mode TEXT NOT NULL,
-  specialty TEXT NOT NULL,
-  appointment_date TEXT NOT NULL,
-  time_slot TEXT NOT NULL,
-  health_concern TEXT,
-  medical_history TEXT[],
-  status TEXT DEFAULT 'Pending',
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
-  reschedule_note TEXT,
-  reject_note TEXT
-);`}
-                                    </pre>
-                                </div>
-                            </div>
-
-                            {/* EmailJS Config */}
-                            <div className="space-y-4">
-                                <h4 className="text-xs font-bold text-primary-600 uppercase tracking-widest border-b border-gray-100 pb-2">2. EmailJS Email Service Integration</h4>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                                    <div>
-                                        <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Service ID</label>
-                                        <input type="text" value={emailServiceId} onChange={e => setEmailServiceId(e.target.value)} placeholder="service_xxx" className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 outline-none text-xs" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Public Key</label>
-                                        <input type="text" value={emailPublicKey} onChange={e => setEmailPublicKey(e.target.value)} placeholder="user_xxx" className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 outline-none text-xs" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Alert Template ID</label>
-                                        <input type="text" value={emailTemplateBooking} onChange={e => setEmailTemplateBooking(e.target.value)} placeholder="template_booking" className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 outline-none text-xs" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[11px] font-bold text-gray-700 uppercase mb-1">Update Template ID</label>
-                                        <input type="text" value={emailTemplateUpdate} onChange={e => setEmailTemplateUpdate(e.target.value)} placeholder="template_status" className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-primary-500 outline-none text-xs" />
-                                    </div>
-                                </div>
-
-                                <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 text-[11px] text-gray-600 space-y-1">
-                                    <p className="font-bold text-gray-800 text-xs">✉️ Supported Template Parameters:</p>
-                                    <p className="mt-1">In your EmailJS templates, use these placeholders in your mail content to render data dynamic fields:</p>
-                                    <ul className="list-disc list-inside space-y-0.5 mt-1 font-mono text-[10px] text-gray-700 bg-white p-2.5 rounded-xl border border-gray-100">
-                                        <li>{"{{to_email}}"} - Target email address</li>
-                                        <li>{"{{patient_name}}"} - Patient's Full name</li>
-                                        <li>{"{{reference_id}}"} - Generated booking ID (e.g. APP-491290)</li>
-                                        <li>{"{{appointment_date}}"} - Selected visit date</li>
-                                        <li>{"{{appointment_time}}"} - Scheduled slot</li>
-                                        <li>{"{{consultation_mode}}"} - Online video consult / In-clinic</li>
-                                        <li>{"{{status}}"} - Pending, Confirmed, Rescheduled, Rejected</li>
-                                        <li>{"{{note}}"} - Reschedule/cancellation remarks</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <button type="submit" className="w-full bg-primary-600 text-white font-bold py-3.5 rounded-xl shadow-md hover:bg-primary-700 transition text-xs sm:text-sm">
-                                <i className="fa-solid fa-floppy-disk mr-1.5"></i>
-                                Save Settings & Sync Credentials
-                            </button>
-                        </form>
-                    </div>
-                )}
-
                 {/* Queue View */}
-                {activeTab !== 'Settings' && (
+                {(
                     <div className="space-y-4">
                         {filteredAppointments.length === 0 ? (
                             <div className="bg-white rounded-3xl p-12 text-center border border-gray-100 shadow-sm space-y-4 animate-fade-in">
