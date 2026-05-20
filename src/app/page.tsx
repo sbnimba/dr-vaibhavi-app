@@ -399,7 +399,7 @@ export default function Home() {
     return (
         <main className="w-full bg-white" id="main-snap-container">
             
-    {/* Built-in translation active — no Google Translate needed */
+    {/* Built-in translation active — no Google Translate needed */}
 
     {/*  Header / Navbar  */}
     <header className="fixed w-full top-0 z-50 glass-header transition-all duration-300 py-3" id="navbar">
