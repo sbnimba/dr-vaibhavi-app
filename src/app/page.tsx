@@ -485,23 +485,12 @@ export default function Home() {
                         CLINIC <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
-                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[420px] grid-cols-2 gap-6 animate-fade-in">
-                        <div>
-                            <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Physical Trust</h4>
-                            <ul className="space-y-3 text-xs font-medium text-gray-600">
-                                <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-hospital text-primary-400 mr-2 w-4"></i> Clinic Overview & Photos</a></li>
-                                <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-sparkles text-primary-400 mr-2 w-4"></i> Hygiene & Facilities</a></li>
-                                <li><a href="#about" className="hover:text-primary-600 transition block"><i className="fa-solid fa-location-dot text-primary-400 mr-2 w-4"></i> MGM Belapur Location</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Patient Info</h4>
-                            <ul className="space-y-3 text-xs font-medium text-gray-600">
-                                <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-clock text-primary-400 mr-2 w-4"></i> Timings & OPD Schedule</a></li>
-                                <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-file-invoice-dollar text-primary-400 mr-2 w-4"></i> Insurance / TPA Support</a></li>
-                                <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-laptop-medical text-primary-400 mr-2 w-4"></i> Virtual Consultation</a></li>
-                            </ul>
-                        </div>
+                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:block transition-all duration-300 z-50 min-w-[220px] animate-fade-in">
+                        <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Visit Us</h4>
+                        <ul className="space-y-3 text-xs font-medium text-gray-600">
+                            <li><a href="https://share.google/rIHIKWL49PnG4VcCd" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition flex items-center gap-2"><i className="fa-solid fa-location-dot text-primary-400 w-4"></i> MGM Belapur Location <i className="fa-solid fa-arrow-up-right-from-square text-[9px] text-gray-400 ml-auto"></i></a></li>
+                            <li><a href="#appointment" className="hover:text-primary-600 transition flex items-center gap-2"><i className="fa-solid fa-laptop-medical text-primary-400 w-4"></i> Virtual Consultation</a></li>
+                        </ul>
                     </div>
                 </div>
 
@@ -511,23 +500,13 @@ export default function Home() {
                         RESOURCES <i className="fa-solid fa-chevron-down text-[9px] text-primary-500 transition-transform group-hover:rotate-180"></i>
                     </button>
                     {/* Dropdown */}
-                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:grid transition-all duration-300 z-50 min-w-[420px] grid-cols-2 gap-6 animate-fade-in">
-                        <div>
-                            <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Knowledge</h4>
-                            <ul className="space-y-3 text-xs font-medium text-gray-600">
-                                <li><a href="#community" className="hover:text-primary-600 transition block"><i className="fa-solid fa-book-open text-primary-400 mr-2 w-4"></i> Blog & Articles</a></li>
-                                <li><a href="https://www.youtube.com/@DrVaibhavicare" target="_blank" className="hover:text-primary-600 transition block"><i className="fa-brands fa-youtube text-primary-400 mr-2 w-4"></i> Educational Videos</a></li>
-                                <li><Link href="/pregnancy-calculator" className="hover:text-primary-600 transition block"><i className="fa-solid fa-calculator text-primary-400 mr-2 w-4"></i> Pregnancy Due Date Calculator</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Patient Portal</h4>
-                            <ul className="space-y-3 text-xs font-medium text-gray-600">
-                                <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-file-arrow-down text-primary-400 mr-2 w-4"></i> Download Reports</a></li>
-                                <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-file-pdf text-primary-400 mr-2 w-4"></i> Diet Charts & PDFs</a></li>
-                                <li><a href="#appointment" className="hover:text-primary-600 transition block"><i className="fa-solid fa-heart-circle-check text-primary-400 mr-2 w-4"></i> Care Instructions</a></li>
-                            </ul>
-                        </div>
+                    <div className="absolute top-full -left-10 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-gray-100 hidden group-hover:block transition-all duration-300 z-50 min-w-[240px] animate-fade-in">
+                        <h4 className="text-[11px] font-bold text-primary-600 uppercase tracking-widest mb-3 border-b pb-1">Knowledge</h4>
+                        <ul className="space-y-3 text-xs font-medium text-gray-600">
+                            <li><a href="#community" className="hover:text-primary-600 transition flex items-center gap-2"><i className="fa-solid fa-book-open text-primary-400 w-4"></i> Blog & Articles</a></li>
+                            <li><a href="https://www.youtube.com/@DrVaibhavicare" target="_blank" className="hover:text-primary-600 transition flex items-center gap-2"><i className="fa-brands fa-youtube text-primary-400 w-4"></i> Educational Videos</a></li>
+                            <li><Link href="/pregnancy-calculator" className="hover:text-primary-600 transition flex items-center gap-2"><i className="fa-solid fa-calculator text-primary-400 w-4"></i> Pregnancy Due Date Calculator</Link></li>
+                        </ul>
                     </div>
                 </div>
 
@@ -537,12 +516,9 @@ export default function Home() {
                 {/* 7. CONTACT US */}
                 <a href="#appointment" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">CONTACT US</a>
                 
-                {/*  Language Toggle with Blinking Arrow  */}
-                <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-full shadow-sm border border-gray-100 relative group cursor-pointer shrink-0 whitespace-nowrap">
-                    <div className="absolute -left-5 top-1/2 -translate-y-1/2 text-primary-500 animate-pulse text-base" title="Change Language">
-                        <i className="fa-solid fa-caret-right"></i>
-                    </div>
-                    <i className="fa-solid fa-language text-gray-400 group-hover:text-primary-500 transition text-xs"></i>
+                {/*  Language Toggle — pink outlined rectangle, no misleading arrow  */}
+                <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border-2 border-primary-300 hover:border-primary-500 transition-colors duration-200 relative group cursor-pointer shrink-0 whitespace-nowrap shadow-sm">
+                    <i className="fa-solid fa-language text-primary-500 text-xs"></i>
                     <select id="lang-select" value={currentLang} onChange={(e) => changeLanguage(e.target.value)} className="bg-transparent text-[11px] xl:text-xs font-bold text-primary-700 outline-none cursor-pointer appearance-none pr-1">
                         <option value="en">English (EN)</option>
                         <option value="hi">हिंदी (HI)</option>
@@ -552,7 +528,7 @@ export default function Home() {
                         <option value="te">తెలుగు (TE)</option>
                         <option value="bn">বাংলা (BN)</option>
                     </select>
-                    <i className="fa-solid fa-chevron-down text-[9px] text-gray-400 absolute right-2 pointer-events-none hidden"></i>
+                    <i className="fa-solid fa-chevron-down text-[9px] text-primary-400"></i>
                 </div>
 
                 {/* 8. APPOINTMENT BUTTON (Important Contrasting Rose Gold / Coral CTA) */}
