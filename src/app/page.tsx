@@ -672,8 +672,35 @@ export default function Home() {
                         </div>
                         <div className="w-px h-8 bg-gray-200"></div>
                         <div>
-                            <p className="text-2xl font-serif font-bold text-gray-900">5k+</p>
-                            <p className="text-xs text-gray-500 font-medium">Happy Patients</p>
+                            <p className="text-2xl font-serif font-bold text-gray-900">1000+</p>
+                            <p className="text-xs text-gray-500 font-medium">Patients Treated</p>
+                        </div>
+                    </div>
+
+                    {/* Premier Hospitals Strip */}
+                    <div className="mt-5">
+                        <p className="text-[10px] font-bold tracking-widest text-gray-400 uppercase mb-3 flex items-center gap-1.5">
+                            <span className="inline-block w-5 h-px bg-gray-300"></span>
+                            Worked at Premier Institutions
+                            <span className="inline-block w-5 h-px bg-gray-300"></span>
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                            <div className="flex items-center gap-1.5 bg-white border border-gray-100 rounded-full px-3 py-1.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                                <span className="text-sm">🏥</span>
+                                <span className="text-[10px] font-bold text-gray-700 whitespace-nowrap">MGM Hospital, Belapur</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 bg-white border border-gray-100 rounded-full px-3 py-1.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                                <span className="text-sm">🏥</span>
+                                <span className="text-[10px] font-bold text-gray-700 whitespace-nowrap">Kashibai Navale Medical College, Pune</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 bg-white border border-gray-100 rounded-full px-3 py-1.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                                <span className="text-sm">🏥</span>
+                                <span className="text-[10px] font-bold text-gray-700 whitespace-nowrap">Motherhood Hospital</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 bg-white border border-gray-100 rounded-full px-3 py-1.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                                <span className="text-sm">🏥</span>
+                                <span className="text-[10px] font-bold text-gray-700 whitespace-nowrap">Vasantrao Deshmukh Govt. Medical College, Yavatmal</span>
+                            </div>
                         </div>
                     </div>
                 </div>
