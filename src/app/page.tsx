@@ -379,7 +379,7 @@ export default function Home() {
                 </div>
                 <div className="shrink-0">
                     <h1 className="text-lg xl:text-xl font-serif font-bold text-gray-900 tracking-wide whitespace-nowrap">Dr. Vaibhavi Dhenge</h1>
-                    <p className="text-[10px] xl:text-xs text-primary-600 font-bold tracking-widest uppercase whitespace-nowrap">Consultant Obstetrician & Gynecologist</p>
+                    <p className="text-[10px] xl:text-xs text-primary-600 font-bold tracking-widest whitespace-nowrap">Consultant Obstetrician & Gynecologist</p>
                 </div>
             </a>
 
@@ -698,7 +698,7 @@ export default function Home() {
                             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-primary-500 animate-pulse shrink-0"></div>
                             <div className="text-left">
                                 <p className="text-xs sm:text-base font-bold font-serif text-gray-900 leading-none mb-1">Dr. Vaibhavi Dhenge</p>
-                                <p className="text-[9px] sm:text-xs font-bold text-primary-600 uppercase tracking-widest leading-none">Consultant Obstetrician & Gynecologist</p>
+                                <p className="text-[9px] sm:text-xs font-bold text-primary-600 tracking-widest leading-none">Consultant Obstetrician & Gynecologist</p>
                             </div>
                         </div>
                     </div>
