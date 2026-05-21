@@ -14,7 +14,7 @@ export default function PcosMythsFacts() {
                         </div>
                         <div>
                             <h1 className="text-base sm:text-lg font-serif font-bold text-gray-900 tracking-wide group-hover:text-purple-600 transition-colors">Dr. Vaibhavi Dhenge</h1>
-                            <p className="text-[10px] sm:text-xs text-purple-600 font-bold tracking-widest uppercase">Consultant Obstetrician & Gynecologist</p>
+                            <p className="text-[10px] sm:text-xs text-purple-600 font-bold tracking-widest">Consultant Obstetrician & Gynecologist</p>
                         </div>
                     </Link>
 

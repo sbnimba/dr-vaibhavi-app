@@ -57,7 +57,7 @@ export default function PregnancyCalculator() {
                         </div>
                         <div>
                             <h1 className="text-base sm:text-lg font-serif font-bold text-gray-900 tracking-wide group-hover:text-primary-600 transition-colors">Dr. Vaibhavi Dhenge</h1>
-                            <p className="text-[10px] sm:text-xs text-primary-600 font-bold tracking-widest uppercase">Consultant Obstetrician & Gynecologist</p>
+                            <p className="text-[10px] sm:text-xs text-primary-600 font-bold tracking-widest">Consultant Obstetrician & Gynecologist</p>
                         </div>
                     </Link>
 
@@ -157,7 +157,7 @@ export default function PregnancyCalculator() {
                         
                         <div className="relative z-10 max-w-2xl mx-auto space-y-6">
                             <div className="w-20 h-20 rounded-full border-4 border-white shadow-xl overflow-hidden mx-auto bg-primary-50">
-                                <img src="/images/doctor-hero-hd.jpg" alt="Dr. Vaibhavi Dhenge" className="w-full h-full object-cover object-center" />
+                                <img src="/dr-vaibhavi-clinic/images/doctor-hero-hd.jpg" alt="Dr. Vaibhavi Dhenge" className="w-full h-full object-cover object-center" />
                             </div>
 
                             <div>
