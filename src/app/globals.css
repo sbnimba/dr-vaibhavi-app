@@ -68,3 +68,24 @@ body { top: 0 !important; }
 .goog-tooltip { display: none !important; }
 .goog-tooltip:hover { display: none !important; }
 .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+
+/* ── Slim custom scrollbar ── */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(236, 72, 153, 0.25);
+    border-radius: 999px;
+    transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(236, 72, 153, 0.55);
+}
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(236, 72, 153, 0.25) transparent;
+}

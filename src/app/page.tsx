@@ -371,7 +371,7 @@ export default function Home() {
 
     {/*  Header / Navbar  */}
     <header className="fixed w-full top-0 z-50 glass-header transition-all duration-300 py-3" id="navbar">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-4">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-2 overflow-hidden">
             {/*  Logo  */}
             <a href="#home" className="flex items-center gap-2 xl:gap-3 shrink-0">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white shadow-lg shrink-0">
@@ -516,8 +516,8 @@ export default function Home() {
                 {/* 7. CONTACT US */}
                 <a href="#appointment" className="text-[11px] xl:text-xs font-bold text-gray-700 hover:text-primary-600 transition tracking-wider whitespace-nowrap shrink-0">CONTACT US</a>
                 
-                {/*  Language Toggle — pink outlined rectangle, no misleading arrow  */}
-                <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border-2 border-primary-300 hover:border-primary-500 transition-colors duration-200 relative group cursor-pointer shrink-0 whitespace-nowrap shadow-sm">
+                {/*  Language Toggle — very subtle pink outline  */}
+                <div className="flex items-center gap-1.5 bg-white px-2.5 py-1.5 rounded-lg border border-pink-100 hover:border-pink-300 transition-colors duration-200 cursor-pointer shrink-0 whitespace-nowrap">
                     <i className="fa-solid fa-language text-primary-500 text-xs"></i>
                     <select id="lang-select" value={currentLang} onChange={(e) => changeLanguage(e.target.value)} className="bg-transparent text-[11px] xl:text-xs font-bold text-primary-700 outline-none cursor-pointer appearance-none pr-1">
                         <option value="en">English (EN)</option>
