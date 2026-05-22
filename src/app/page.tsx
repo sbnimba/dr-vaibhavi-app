@@ -1130,8 +1130,13 @@ export default function Home() {
                     <h3 className="text-sm sm:text-base font-serif font-bold text-gray-900">Week-by-Week Pregnancy Diet Guide</h3>
                 </div>
                 <div className="w-full sm:w-auto relative z-10 shrink-0">
-                    <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); alert('Subscribed! In a live app, this would send an email via Formspree or EmailJS.'); }}>
-                        <input type="email" placeholder="Email address" required className="flex-1 w-full sm:w-48 bg-white border border-gray-200 text-gray-800 text-xs rounded-lg px-3 py-1.5 outline-none focus:border-primary-500 shadow-sm" />
+                    <form action="https://formsubmit.co/IndiasBestGynaecologist@gmail.com" method="POST" className="flex gap-2">
+                        {/* Honeypot & Configuration for FormSubmit */}
+                        <input type="hidden" name="_subject" value="New Request for Pregnancy Diet Guide!" />
+                        <input type="hidden" name="_next" value="https://sbnimba.github.io/dr-vaibhavi-clinic/pregnancy-diet-guide" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        
+                        <input type="email" name="email" placeholder="Email address" required className="flex-1 w-full sm:w-48 bg-white border border-gray-200 text-gray-800 text-xs rounded-lg px-3 py-1.5 outline-none focus:border-primary-500 shadow-sm" />
                         <button type="submit" className="bg-primary-600 text-white font-bold py-1.5 px-4 rounded-lg shadow-sm hover:bg-primary-700 transition-colors text-xs outline-none whitespace-nowrap">
                             Send <i className="fa-solid fa-download ml-1"></i>
                         </button>
