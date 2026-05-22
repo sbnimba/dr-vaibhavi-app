@@ -161,28 +161,6 @@ export default function Home() {
                 console.error("GCal Link error", e);
             }
 
-            const htmlBody = `<div style="font-family:sans-serif;max-width:600px;margin:auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
-  <div style="background:linear-gradient(135deg,#7c3aed,#db2777);padding:28px 32px;">
-    <h2 style="margin:0;color:#fff;font-size:22px;">🩺 New Appointment Booking</h2>
-    <p style="margin:6px 0 0;color:rgba(255,255,255,0.85);font-size:13px;">Dr. Vaibhavi Dhenge Clinic — Automated Alert</p>
-  </div>
-  <div style="padding:28px 32px;">
-    <table style="width:100%;border-collapse:collapse;font-size:14px;">
-      <tr><td style="padding:8px 0;color:#888;width:45%;">Reference ID</td><td style="padding:8px 0;font-weight:700;color:#1f2937;">${data.id}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Patient Name</td><td style="padding:8px 0;font-weight:700;color:#1f2937;border-top:1px solid #f3f4f6;">${data.patientName}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Mobile Number</td><td style="padding:8px 0;font-weight:700;color:#1f2937;border-top:1px solid #f3f4f6;">${data.mobileNumber}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Email Address</td><td style="padding:8px 0;font-weight:700;color:#1f2937;border-top:1px solid #f3f4f6;">${data.emailAddress}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Appointment Date</td><td style="padding:8px 0;font-weight:700;color:#db2777;border-top:1px solid #f3f4f6;">${data.date}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Appointment Time</td><td style="padding:8px 0;font-weight:700;color:#db2777;border-top:1px solid #f3f4f6;">${data.timeSlot}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Consultation Mode</td><td style="padding:8px 0;font-weight:700;color:#1f2937;border-top:1px solid #f3f4f6;">${data.consultationMode}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Specialty</td><td style="padding:8px 0;font-weight:700;color:#1f2937;border-top:1px solid #f3f4f6;">${data.specialty}</td></tr>
-      <tr><td style="padding:8px 0;color:#888;border-top:1px solid #f3f4f6;">Health Concern</td><td style="padding:8px 0;color:#1f2937;border-top:1px solid #f3f4f6;">${data.healthConcern || 'None'}</td></tr>
-    </table>
-    ${gcalLink}
-  </div>
-  <div style="background:#f9fafb;padding:16px 32px;font-size:11px;color:#aaa;text-align:center;">This is an automated notification from the Dr. Vaibhavi Dhenge Clinic booking system.</div>
-</div>`;
-
             try {
                 await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
@@ -193,9 +171,19 @@ export default function Home() {
                     body: JSON.stringify({
                         access_key: "f6628986-b070-413e-9f0d-8191fd9b2bf5",
                         subject: `🩺 New Booking: ${data.patientName} — ${data.date} at ${data.timeSlot}`,
-                        from_name: "Dr. Vaibhavi Clinic (Automated)",
+                        from_name: "Dr. Vaibhavi Clinic Booking System",
                         replyto: data.emailAddress,
-                        html: htmlBody
+                        "Reference ID": data.id,
+                        "Patient Name": data.patientName,
+                        "Mobile Number": data.mobileNumber,
+                        "Email Address": data.emailAddress,
+                        "Appointment Date": data.date,
+                        "Appointment Time": data.timeSlot,
+                        "Consultation Mode": data.consultationMode,
+                        "Specialty": data.specialty,
+                        "Health Concern": data.healthConcern || 'None',
+                        "Action Required": "Please confirm this booking by calling the patient.",
+                        "Google Calendar Link": gcalUrl
                     })
                 });
                 console.log('[Web3Forms] Booking notification sent to doctor.');
