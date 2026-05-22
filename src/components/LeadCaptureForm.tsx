@@ -30,22 +30,25 @@ export default function LeadCaptureForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex gap-2">
+        <form onSubmit={handleSubmit} className="flex gap-2 items-start">
             <input type="hidden" name="ml-submit" value="1" />
             <input type="hidden" name="anticsrf" value="true" />
             
-            <input 
-                type="email" 
-                name="fields[email]" 
-                placeholder="Email address" 
-                required 
-                className="flex-1 w-full sm:w-48 bg-white border border-gray-200 text-gray-800 text-xs rounded-lg px-3 py-1.5 outline-none focus:border-primary-500 shadow-sm" 
-            />
+            <div className="flex-1 w-full sm:w-48">
+                <input 
+                    type="email" 
+                    name="fields[email]" 
+                    placeholder="Email address" 
+                    required 
+                    className="w-full bg-white border border-gray-200 text-gray-800 text-xs rounded-lg px-3 py-1.5 outline-none focus:border-primary-500 shadow-sm" 
+                />
+                <p className="text-[9px] text-gray-400 mt-1 pl-1">You are subscribing to our weekly newsletter.</p>
+            </div>
             
             <button 
                 type="submit" 
                 disabled={loading}
-                className="bg-primary-600 text-white font-bold py-1.5 px-4 rounded-lg shadow-sm hover:bg-primary-700 transition-colors text-xs outline-none whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed"
+                className="bg-primary-600 text-white font-bold py-1.5 px-4 rounded-lg shadow-sm hover:bg-primary-700 transition-colors text-xs outline-none whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed shrink-0"
             >
                 {loading ? 'Sending...' : <>Send <i className="fa-solid fa-download ml-1"></i></>}
             </button>
