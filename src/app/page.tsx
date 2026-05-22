@@ -946,12 +946,12 @@ export default function Home() {
     </section>
 
     {/* ==================== 7TH PAGE: COMMUNITY & PREGNANCY TIPS ==================== */}
-    <section id="community" className="w-full min-h-screen snap-start snap-always overflow-y-auto pt-24 pb-12 lg:pb-16 flex flex-col relative bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
-            <h2 className="text-xs font-bold tracking-widest text-primary-600 uppercase mb-1" data-aos="fade-up">Stay Connected</h2>
-            <h3 className="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-4" data-aos="fade-up" data-aos-delay="100">Community & Health Tips</h3>
+    <section id="community" className="w-full min-h-screen lg:h-screen snap-start snap-always overflow-y-auto lg:overflow-hidden pt-16 lg:pt-20 pb-4 lg:pb-6 flex flex-col justify-center relative bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 relative z-10 w-full text-center">
+            <h2 className="text-[10px] font-bold tracking-widest text-primary-600 uppercase mb-1" data-aos="fade-up">Stay Connected</h2>
+            <h3 className="text-2xl lg:text-3xl font-serif font-bold text-gray-900 mb-2" data-aos="fade-up" data-aos-delay="100">Community & Health Tips</h3>
             
-            <div className="flex flex-wrap justify-center gap-4 mb-8" data-aos="fade-up" data-aos-delay="200">
+            <div className="flex flex-wrap justify-center gap-3 mb-4" data-aos="fade-up" data-aos-delay="200">
                 <a href="https://www.instagram.com/drvaibhavicare?igsh=MTg4MTh3b2kya2VsMw%3D%3D&utm_source=qr" target="_blank" className="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white px-5 py-2.5 rounded-full font-bold shadow-md hover:shadow-lg transition flex items-center gap-2 text-xs sm:text-sm">
                     <i className="fa-brands fa-instagram text-base"></i> Follow on Instagram
                 </a>
@@ -960,9 +960,9 @@ export default function Home() {
                 </a>
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 text-left" data-aos="fade-up" data-aos-delay="300">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2 text-left" data-aos="fade-up" data-aos-delay="300">
                 {/* Card 1 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-pink-100 flex items-center justify-center text-pink-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-apple-whole"></i>
@@ -978,7 +978,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 2 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-dna"></i>
@@ -994,7 +994,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 3 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-baby-carriage"></i>
@@ -1010,7 +1010,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 4 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-person-pregnant"></i>
@@ -1026,7 +1026,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 5 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-vials"></i>
@@ -1042,7 +1042,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 6 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center text-teal-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-chart-line"></i>
@@ -1058,7 +1058,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 7 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-triangle-exclamation"></i>
@@ -1074,7 +1074,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 8 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center text-red-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-bell"></i>
@@ -1090,7 +1090,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 9 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-hospital-user"></i>
@@ -1106,7 +1106,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 10 */}
-                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-3.5 group">
+                <div className="bg-[#FAF9F6] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col justify-between p-2.5 group">
                     <div>
                         <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 text-sm mb-2 group-hover:scale-110 transition-transform duration-300">
                             <i className="fa-solid fa-capsules"></i>
@@ -1123,12 +1123,12 @@ export default function Home() {
             </div>
 
             {/* Lead Capture Form */}
-            <div className="mt-12 lg:mt-16 bg-gradient-to-br from-brand-peach/20 via-pink-50/30 to-brand-peach/10 border border-brand-peach/40 rounded-3xl p-6 sm:p-8 max-w-4xl mx-auto shadow-premium flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden" data-aos="fade-up">
+            <div className="mt-4 lg:mt-6 bg-gradient-to-br from-brand-peach/20 via-pink-50/30 to-brand-peach/10 border border-brand-peach/40 rounded-3xl p-4 sm:p-5 max-w-4xl mx-auto shadow-premium flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden" data-aos="fade-up">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                 <div className="relative z-10 text-center md:text-left md:max-w-lg">
-                    <h4 className="text-sm font-bold tracking-widest text-primary-600 uppercase mb-2">Free Download</h4>
-                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-gray-900 mb-2">Week-by-Week Pregnancy Diet Guide</h3>
-                    <p className="text-gray-600 text-xs sm:text-sm">Get Dr. Vaibhavi's exclusive nutritional roadmap sent directly to your inbox. Perfect for expecting mothers!</p>
+                    <h4 className="text-[10px] font-bold tracking-widest text-primary-600 uppercase mb-1">Free Download</h4>
+                    <h3 className="text-lg sm:text-xl font-serif font-bold text-gray-900 mb-1">Week-by-Week Pregnancy Diet Guide</h3>
+                    <p className="text-gray-600 text-[10px] sm:text-xs">Get Dr. Vaibhavi's exclusive nutritional roadmap sent directly to your inbox.</p>
                 </div>
                 <div className="w-full md:w-auto relative z-10 shrink-0">
                     <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => { e.preventDefault(); alert('Subscribed! In a live app, this would send an email via Formspree or EmailJS.'); }}>
