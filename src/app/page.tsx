@@ -1702,6 +1702,7 @@ export default function Home() {
                         <a href="#appointment" className="hover:text-white transition">Privacy Policy</a>
                         <a href="#appointment" className="hover:text-white transition">Terms & Conditions</a>
                         <a href="#appointment" className="hover:text-white transition">Medical Disclaimer</a>
+                        <Link href="/admin" className="hover:text-primary-400 transition text-primary-600 font-bold ml-2">Admin Portal</Link>
                     </div>
                 </div>
             </div>
