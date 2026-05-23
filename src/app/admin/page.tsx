@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 interface Appointment {
     id: string;
@@ -25,7 +26,7 @@ export default function AdminDashboard() {
     const [loginError, setLoginError] = useState('');
     
     const [appointments, setAppointments] = useState<Appointment[]>([]);
-    const [activeTab, setActiveTab] = useState<'Pending' | 'Confirmed' | 'Completed' | 'Settings'>('Pending');
+    const [activeTab, setActiveTab] = useState<'Pending' | 'Confirmed' | 'Completed' | 'Calendar' | 'Analytics' | 'Settings'>('Pending');
     const [isSyncing, setIsSyncing] = useState(false);
 
     // Settings State
@@ -289,37 +290,28 @@ export default function AdminDashboard() {
     };
 
     const sendEmailAlert = async (app: Appointment, note: string) => {
-        const serviceId = localStorage.getItem('dr_vaibhavi_emailjs_service_id');
-        const templateId = localStorage.getItem('dr_vaibhavi_emailjs_template_update');
-        const publicKey = localStorage.getItem('dr_vaibhavi_emailjs_public_key');
-
-        if (!serviceId || !templateId || !publicKey) return;
-
         try {
-            await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            const res = await fetch('/api/admin/send-status', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    service_id: serviceId,
-                    template_id: templateId,
-                    user_id: publicKey,
-                    template_params: {
-                        to_email: app.emailAddress,
-                        to_name: app.patientName,
-                        patient_name: app.patientName,
-                        reference_id: app.id,
-                        consultation_mode: app.consultationMode,
-                        specialty: app.specialty,
-                        appointment_date: app.date,
-                        appointment_time: app.timeSlot,
-                        status: app.status,
-                        note: note || '',
-                        reply_to: 'IndiasBestGynaecologist@gmail.com'
-                    }
+                    id: app.id,
+                    patientName: app.patientName,
+                    emailAddress: app.emailAddress,
+                    date: app.date,
+                    timeSlot: app.timeSlot,
+                    consultationMode: app.consultationMode,
+                    specialty: app.specialty,
+                    status: app.status,
+                    note: note
                 })
             });
+            const data = await res.json();
+            if (!data.success) {
+                console.error('[Backend API] Fail to send status update email:', data.message);
+            }
         } catch (err) {
-            console.error('[EmailJS] Fail to send status update email:', err);
+            console.error('[Backend API] Fail to send status update email:', err);
         }
     };
 
@@ -566,23 +558,117 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Tab Navigation */}
-                <div className="bg-white p-2 rounded-2xl border border-gray-100 shadow-sm flex flex-wrap gap-2 mb-6 max-w-lg">
-                    {(['Pending', 'Confirmed', 'Completed'] as const).map(tab => (
+                <div className="bg-white p-2 rounded-2xl border border-gray-100 shadow-sm flex flex-wrap gap-2 mb-6 max-w-2xl">
+                    {(['Pending', 'Confirmed', 'Completed', 'Calendar', 'Analytics'] as const).map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`flex-1 min-w-[80px] py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 ${activeTab === tab ? 'bg-primary-600 text-white shadow-md' : 'text-gray-600 hover:bg-gray-50'}`}
+                            className={`flex-1 min-w-[100px] py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 ${activeTab === tab ? 'bg-primary-600 text-white shadow-md' : 'text-gray-600 hover:bg-gray-50'}`}
                         >
                             {tab === 'Pending' && <i className="fa-solid fa-hourglass-half"></i>}
                             {tab === 'Confirmed' && <i className="fa-solid fa-circle-check"></i>}
                             {tab === 'Completed' && <i className="fa-solid fa-folder-closed"></i>}
+                            {tab === 'Calendar' && <i className="fa-solid fa-calendar-days"></i>}
+                            {tab === 'Analytics' && <i className="fa-solid fa-chart-pie"></i>}
                             <span>{tab}</span>
                         </button>
                     ))}
                 </div>
 
+                {/* Calendar View */}
+                {activeTab === 'Calendar' && (
+                    <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm animate-fade-in overflow-x-auto">
+                        <div className="min-w-[800px]">
+                            <h3 className="text-lg font-serif font-bold text-gray-900 mb-6">Upcoming Confirmed Schedule</h3>
+                            <div className="grid grid-cols-7 gap-4">
+                                {['Today', '+1 Day', '+2 Days', '+3 Days', '+4 Days', '+5 Days', '+6 Days'].map(day => (
+                                    <div key={day} className="text-center font-bold text-xs text-gray-500 uppercase pb-2 border-b border-gray-100">{day}</div>
+                                ))}
+                                {/* Generate next 14 days for a quick view */}
+                                {Array.from({length: 14}).map((_, i) => {
+                                    const d = new Date();
+                                    d.setDate(d.getDate() + i);
+                                    const dateStr = d.toISOString().split('T')[0];
+                                    const dayApps = appointments.filter(a => a.date === dateStr && (a.status === 'Confirmed' || a.status === 'Rescheduled'));
+                                    
+                                    return (
+                                        <div key={dateStr} className="min-h-[120px] border border-gray-100 rounded-xl p-2 bg-gray-50/50">
+                                            <div className="text-[10px] font-bold text-gray-400 mb-2">{d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', weekday: 'short' })}</div>
+                                            <div className="space-y-1.5">
+                                                {dayApps.map(app => (
+                                                    <div key={app.id} className="bg-emerald-100 text-emerald-800 p-1.5 rounded-lg text-[9px] font-bold leading-tight border border-emerald-200">
+                                                        <div className="mb-0.5">{app.timeSlot}</div>
+                                                        <div className="truncate">{app.patientName}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Analytics View */}
+                {activeTab === 'Analytics' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm">
+                                <h3 className="text-lg font-serif font-bold text-gray-900 mb-6">Appointment Status Distribution</h3>
+                                <div className="h-64">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <PieChart>
+                                            <Pie 
+                                                data={[
+                                                    { name: 'Pending', value: appointments.filter(a => a.status === 'Pending').length, color: '#f59e0b' },
+                                                    { name: 'Confirmed', value: appointments.filter(a => a.status === 'Confirmed' || a.status === 'Rescheduled').length, color: '#10b981' },
+                                                    { name: 'Completed', value: appointments.filter(a => a.status === 'Completed').length, color: '#6b7280' },
+                                                    { name: 'Declined', value: appointments.filter(a => a.status === 'Rejected').length, color: '#ef4444' }
+                                                ]} 
+                                                dataKey="value" 
+                                                nameKey="name" 
+                                                cx="50%" 
+                                                cy="50%" 
+                                                outerRadius={80} 
+                                                label
+                                            >
+                                                {
+                                                    [
+                                                        { color: '#f59e0b' },
+                                                        { color: '#10b981' },
+                                                        { color: '#6b7280' },
+                                                        { color: '#ef4444' }
+                                                    ].map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)
+                                                }
+                                            </Pie>
+                                            <Tooltip />
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </div>
+                            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm">
+                                <h3 className="text-lg font-serif font-bold text-gray-900 mb-6">Consultation Modes</h3>
+                                <div className="h-64">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart data={[
+                                            { mode: 'In-Clinic', count: appointments.filter(a => a.consultationMode.includes('In-Clinic')).length },
+                                            { mode: 'Online', count: appointments.filter(a => a.consultationMode.includes('Online')).length }
+                                        ]}>
+                                            <XAxis dataKey="mode" />
+                                            <YAxis allowDecimals={false} />
+                                            <Tooltip />
+                                            <Bar dataKey="count" fill="#7c3aed" radius={[4, 4, 0, 0]} />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Queue View */}
-                {(
+                {['Pending', 'Confirmed', 'Completed'].includes(activeTab) && (
                     <div className="space-y-4">
                         {filteredAppointments.length === 0 ? (
                             <div className="bg-white rounded-3xl p-12 text-center border border-gray-100 shadow-sm space-y-4 animate-fade-in">
