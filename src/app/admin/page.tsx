@@ -194,18 +194,6 @@ export default function AdminDashboard() {
         }
     };
 
-    const saveSettings = (e: React.FormEvent) => {
-        e.preventDefault();
-        localStorage.setItem('dr_vaibhavi_supabase_url', sbUrl.trim());
-        localStorage.setItem('dr_vaibhavi_supabase_key', sbKey.trim());
-        localStorage.setItem('dr_vaibhavi_emailjs_service_id', emailServiceId.trim());
-        localStorage.setItem('dr_vaibhavi_emailjs_template_booking', emailTemplateBooking.trim());
-        localStorage.setItem('dr_vaibhavi_emailjs_template_update', emailTemplateUpdate.trim());
-        localStorage.setItem('dr_vaibhavi_emailjs_public_key', emailPublicKey.trim());
-        showToast('System Integration Settings Saved Successfully!');
-        loadAppointments();
-    };
-
     const updateAppointmentInStore = async (id: string, status: Appointment['status'], extra: Partial<Appointment>, emailType: 'status_update', emailNote?: string) => {
         // 1. Update local cache state & trigger email alert
         let updatedList: Appointment[] = [];
