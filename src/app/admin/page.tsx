@@ -22,21 +22,19 @@ interface Appointment {
 }
 
 export default function AdminDashboard() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [passwordInput, setPasswordInput] = useState('');
+    const [authStep, setAuthStep] = useState<'email' | 'otp' | 'authenticated'>('email');
+    const [emailInput, setEmailInput] = useState('');
+    const [otpInput, setOtpInput] = useState('');
     const [loginError, setLoginError] = useState('');
+    const [loginMessage, setLoginMessage] = useState('');
     
-    const [appointments, setAppointments] = useState<Appointment[]>([]);
-    const [activeTab, setActiveTab] = useState<'Pending' | 'Confirmed' | 'Completed' | 'Calendar' | 'Analytics' | 'Settings'>('Pending');
-    const [isSyncing, setIsSyncing] = useState(false);
+    const [userRole, setUserRole] = useState<'SUPER_ADMIN' | 'COMPOUNDER' | null>(null);
+    const [isApproved, setIsApproved] = useState(false);
+    const [staffList, setStaffList] = useState<any[]>([]);
 
-    // Settings State
-    const [sbUrl, setSbUrl] = useState('');
-    const [sbKey, setSbKey] = useState('');
-    const [emailServiceId, setEmailServiceId] = useState('');
-    const [emailTemplateBooking, setEmailTemplateBooking] = useState('');
-    const [emailTemplateUpdate, setEmailTemplateUpdate] = useState('');
-    const [emailPublicKey, setEmailPublicKey] = useState('');
+    const [appointments, setAppointments] = useState<Appointment[]>([]);
+    const [activeTab, setActiveTab] = useState<'Pending' | 'Confirmed' | 'Completed' | 'Calendar' | 'Analytics' | 'Staff' | 'Settings'>('Pending');
+    const [isSyncing, setIsSyncing] = useState(false);
 
     // Modal state for Reschedule / Reject
     const [modalType, setModalType] = useState<'reschedule' | 'reject' | null>(null);
@@ -56,22 +54,38 @@ export default function AdminDashboard() {
     // Load credentials & appointments
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            const auth = localStorage.getItem('dr_vaibhavi_admin_auth');
-            if (auth === 'true') {
-                setIsAuthenticated(true);
-            }
-
-            // Load Settings keys
-            setSbUrl(localStorage.getItem('dr_vaibhavi_supabase_url') || '');
-            setSbKey(localStorage.getItem('dr_vaibhavi_supabase_key') || '');
-            setEmailServiceId(localStorage.getItem('dr_vaibhavi_emailjs_service_id') || '');
-            setEmailTemplateBooking(localStorage.getItem('dr_vaibhavi_emailjs_template_booking') || '');
-            setEmailTemplateUpdate(localStorage.getItem('dr_vaibhavi_emailjs_template_update') || '');
-            setEmailPublicKey(localStorage.getItem('dr_vaibhavi_emailjs_public_key') || '');
-
-            loadAppointments();
+            checkUser();
         }
     }, []);
+
+    const checkUser = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+            await fetchRoleAndApprove(session.user.id);
+        }
+    }
+
+    const fetchRoleAndApprove = async (userId: string) => {
+        const { data } = await supabase.from('staff_roles').select('*').eq('id', userId).single();
+        if (data) {
+            setUserRole(data.role);
+            setIsApproved(data.is_approved);
+            if (data.is_approved) {
+                setAuthStep('authenticated');
+                loadAppointments();
+                if (data.role === 'SUPER_ADMIN') {
+                    loadStaff();
+                }
+            } else {
+                setAuthStep('authenticated');
+            }
+        }
+    }
+
+    const loadStaff = async () => {
+        const { data } = await supabase.from('staff_roles').select('*').order('created_at', { ascending: false });
+        if (data) setStaffList(data);
+    }
 
     // Security XOR helper functions for encrypting/decrypting private patient data
     const SECRET_KEY = "vaibhavi2026";
@@ -135,22 +149,49 @@ export default function AdminDashboard() {
         setIsSyncing(false);
     };
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleSendOtp = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (passwordInput === 'vaibhavi2026' || passwordInput === 'admin123') {
-            setIsAuthenticated(true);
-            localStorage.setItem('dr_vaibhavi_admin_auth', 'true');
-            setLoginError('');
-            showToast('Access Granted to Admin Dashboard');
+        setLoginError('');
+        setLoginMessage('Sending 6-digit code to your email...');
+        const { error } = await supabase.auth.signInWithOtp({ email: emailInput });
+        if (error) {
+            setLoginError(error.message);
+            setLoginMessage('');
         } else {
-            setLoginError('Invalid Administrator PIN / Password.');
+            setLoginMessage('');
+            setAuthStep('otp');
+            showToast('Secure code sent to your email.');
         }
     };
 
-    const handleLogout = () => {
-        setIsAuthenticated(false);
-        localStorage.removeItem('dr_vaibhavi_admin_auth');
-        showToast('Logged out');
+    const handleVerifyOtp = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoginError('');
+        setLoginMessage('Verifying code...');
+        const { data, error } = await supabase.auth.verifyOtp({ email: emailInput, token: otpInput, type: 'email' });
+        if (error) {
+            setLoginError(error.message);
+            setLoginMessage('');
+        } else if (data.user) {
+            setLoginMessage('');
+            await fetchRoleAndApprove(data.user.id);
+        }
+    };
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        setAuthStep('email');
+        setUserRole(null);
+        setIsApproved(false);
+        showToast('Logged out securely');
+    };
+
+    const toggleStaffApproval = async (staffId: string, currentStatus: boolean) => {
+        const { error } = await supabase.from('staff_roles').update({ is_approved: !currentStatus }).eq('id', staffId);
+        if (!error) {
+            showToast(currentStatus ? 'Access Revoked' : 'Access Approved');
+            loadStaff();
+        }
     };
 
     const saveSettings = (e: React.FormEvent) => {
@@ -330,16 +371,22 @@ export default function AdminDashboard() {
         return false;
     });
 
-    if (!isAuthenticated) {
+    if (authStep !== 'authenticated' || !isApproved) {
         return (
             <div className="min-h-screen bg-[#FAF9F6] flex flex-col justify-center items-center p-4">
                 <div className="w-full max-w-md bg-white rounded-3xl p-8 shadow-premium border border-gray-100 animate-scale-in">
                     <div className="text-center mb-6">
                         <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-3 shadow-inner">
-                            <i className="fa-solid fa-user-doctor"></i>
+                            <i className="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h2 className="text-2xl font-serif font-bold text-gray-900">Doctor Portal Login</h2>
-                        <p className="text-xs text-gray-500 mt-1">Clinical Administration & Queue Management</p>
+                        <h2 className="text-2xl font-serif font-bold text-gray-900">
+                            {authStep === 'authenticated' && !isApproved ? 'Account Pending' : 'Secure Staff Login'}
+                        </h2>
+                        <p className="text-xs text-gray-500 mt-1">
+                            {authStep === 'authenticated' && !isApproved 
+                                ? 'Your account is waiting for Super Admin approval.' 
+                                : 'Passwordless 2-Factor Authentication'}
+                        </p>
                     </div>
 
                     {loginError && (
@@ -348,29 +395,66 @@ export default function AdminDashboard() {
                             <span>{loginError}</span>
                         </div>
                     )}
-
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <div>
-                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Enter Doctor PIN / Password</label>
-                            <input 
-                                type="password" 
-                                value={passwordInput} 
-                                onChange={(e) => setPasswordInput(e.target.value)} 
-                                required 
-                                placeholder="••••••••••••" 
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-sm text-center tracking-widest font-mono"
-                            />
-                            <p className="text-[10px] text-gray-400 mt-1 text-center">Hint: Enter <code className="bg-gray-100 px-1 py-0.5 rounded">vaibhavi2026</code> or <code className="bg-gray-100 px-1 py-0.5 rounded">admin123</code></p>
+                    
+                    {loginMessage && (
+                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl text-xs flex items-center gap-2">
+                            <i className="fa-solid fa-spinner fa-spin text-blue-500"></i>
+                            <span>{loginMessage}</span>
                         </div>
+                    )}
 
-                        <button 
-                            type="submit" 
-                            className="w-full bg-primary-600 text-white font-bold py-3 rounded-xl shadow-md shadow-primary-500/20 hover:bg-primary-700 transition flex items-center justify-center gap-2 text-xs sm:text-sm"
-                        >
-                            <i className="fa-solid fa-right-to-bracket"></i>
-                            <span>Access Dashboard</span>
-                        </button>
-                    </form>
+                    {authStep === 'email' && (
+                        <form onSubmit={handleSendOtp} className="space-y-4">
+                            <div>
+                                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address</label>
+                                <input 
+                                    type="email" 
+                                    value={emailInput} 
+                                    onChange={(e) => setEmailInput(e.target.value)} 
+                                    required 
+                                    placeholder="doctor@example.com" 
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-sm"
+                                />
+                            </div>
+                            <button type="submit" className="w-full bg-primary-600 text-white font-bold py-3 rounded-xl shadow-md hover:bg-primary-700 transition flex items-center justify-center gap-2 text-xs sm:text-sm">
+                                <i className="fa-solid fa-paper-plane"></i> Send Login Code
+                            </button>
+                        </form>
+                    )}
+
+                    {authStep === 'otp' && (
+                        <form onSubmit={handleVerifyOtp} className="space-y-4">
+                            <div>
+                                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Enter 6-Digit Code</label>
+                                <input 
+                                    type="text" 
+                                    value={otpInput} 
+                                    onChange={(e) => setOtpInput(e.target.value)} 
+                                    required 
+                                    placeholder="123456" 
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition bg-gray-50 text-2xl text-center tracking-[1em] font-mono"
+                                    maxLength={6}
+                                />
+                            </div>
+                            <button type="submit" className="w-full bg-primary-600 text-white font-bold py-3 rounded-xl shadow-md hover:bg-primary-700 transition flex items-center justify-center gap-2 text-xs sm:text-sm">
+                                <i className="fa-solid fa-check-circle"></i> Verify & Login
+                            </button>
+                            <button type="button" onClick={() => setAuthStep('email')} className="w-full text-xs text-gray-500 hover:text-gray-700 py-2">
+                                Change Email Address
+                            </button>
+                        </form>
+                    )}
+                    
+                    {authStep === 'authenticated' && !isApproved && (
+                        <div className="space-y-4">
+                            <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-sm text-amber-800 text-center">
+                                Please ask Dr. Vaibhavi to approve your account from her Super Admin dashboard before you can access patient data.
+                            </div>
+                            <button onClick={handleLogout} className="w-full bg-gray-100 text-gray-700 font-bold py-3 rounded-xl hover:bg-gray-200 transition text-xs sm:text-sm">
+                                Logout
+                            </button>
+                        </div>
+                    )}
 
                     <div className="mt-6 pt-4 border-t border-gray-100 text-center">
                         <Link href="/" className="text-xs text-primary-600 hover:underline flex items-center justify-center gap-1">
@@ -474,8 +558,8 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Tab Navigation */}
-                <div className="bg-white p-2 rounded-2xl border border-gray-100 shadow-sm flex flex-wrap gap-2 mb-6 max-w-2xl">
-                    {(['Pending', 'Confirmed', 'Completed', 'Calendar', 'Analytics'] as const).map(tab => (
+                <div className="bg-white p-2 rounded-2xl border border-gray-100 shadow-sm flex flex-wrap gap-2 mb-6 max-w-4xl">
+                    {(['Pending', 'Confirmed', 'Completed', 'Calendar', 'Analytics', ...(userRole === 'SUPER_ADMIN' ? ['Staff'] as const : [])] as const).map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -486,10 +570,60 @@ export default function AdminDashboard() {
                             {tab === 'Completed' && <i className="fa-solid fa-folder-closed"></i>}
                             {tab === 'Calendar' && <i className="fa-solid fa-calendar-days"></i>}
                             {tab === 'Analytics' && <i className="fa-solid fa-chart-pie"></i>}
+                            {tab === 'Staff' && <i className="fa-solid fa-users-gear"></i>}
                             <span>{tab}</span>
                         </button>
                     ))}
                 </div>
+                
+                {/* Staff Management View */}
+                {activeTab === 'Staff' && userRole === 'SUPER_ADMIN' && (
+                    <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm animate-fade-in">
+                        <h3 className="text-lg font-serif font-bold text-gray-900 mb-6">Staff Access Management</h3>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left text-sm text-gray-600">
+                                <thead className="text-xs uppercase bg-gray-50 text-gray-700">
+                                    <tr>
+                                        <th className="px-6 py-3 rounded-tl-xl">Email</th>
+                                        <th className="px-6 py-3">Role</th>
+                                        <th className="px-6 py-3">Joined</th>
+                                        <th className="px-6 py-3">Status</th>
+                                        <th className="px-6 py-3 rounded-tr-xl text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {staffList.map(staff => (
+                                        <tr key={staff.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50">
+                                            <td className="px-6 py-4 font-medium text-gray-900">{staff.email}</td>
+                                            <td className="px-6 py-4">
+                                                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${staff.role === 'SUPER_ADMIN' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
+                                                    {staff.role}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4">{new Date(staff.created_at).toLocaleDateString()}</td>
+                                            <td className="px-6 py-4">
+                                                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${staff.is_approved ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                                                    {staff.is_approved ? 'Approved' : 'Pending'}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4 text-right">
+                                                {staff.role !== 'SUPER_ADMIN' && (
+                                                    <button 
+                                                        onClick={() => toggleStaffApproval(staff.id, staff.is_approved)}
+                                                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${staff.is_approved ? 'bg-red-50 text-red-600 hover:bg-red-100' : 'bg-green-50 text-green-600 hover:bg-green-100'}`}
+                                                    >
+                                                        {staff.is_approved ? 'Revoke' : 'Approve'}
+                                                    </button>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            {staffList.length === 0 && <p className="text-center py-6 text-gray-500">No staff accounts found.</p>}
+                        </div>
+                    </div>
+                )}
 
                 {/* Calendar View */}
                 {activeTab === 'Calendar' && (
